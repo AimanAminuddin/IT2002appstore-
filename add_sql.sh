@@ -25,7 +25,7 @@ do
   fi
 done < ".env"
 
-URI="postgres://balnqengoxsrih:7911cef28045c976a1d63efe2aee90acb43fc1ae71e2231c7e43c251210f51d0@ec2-3-230-238-86.compute-1.amazonaws.com:5432/d45ku2l1gbjbia"
+URI= "postgres://llhrnyfqtyxbfo:39eeab561fb31fc2b4dc62f07129c0804a12fd368489121eb8393b194d57a8e8@ec2-52-73-149-159.compute-1.amazonaws.com:5432/d4qb9te070b7ug"
 
 # Run the scripts to insert data.
 psql ${URI} -f sql/AppStoreClean.sql
