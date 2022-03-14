@@ -25,7 +25,7 @@ do
   fi
 done < ".env"
 
-URI= "postgres://llhrnyfqtyxbfo:39eeab561fb31fc2b4dc62f07129c0804a12fd368489121eb8393b194d57a8e8@ec2-52-73-149-159.compute-1.amazonaws.com:5432/d4qb9te070b7ug"
+URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
 # Run the scripts to insert data.
 psql ${URI}
