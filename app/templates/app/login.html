@@ -1,11 +1,13 @@
+{% load static %}
 <html>
     <head>
         <title>Login Form</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <body>
             <div class="loginbox">
-                <form method="POST" class="form">
-                    <img src="../../static/app/images/avatar.png">
+                <form method="POST" class="form" action="">
+                    {% csrf_token %} <!--im not sure what's the use of this-->
+                    <img src="../../static/app/images/avatar.png"> <!--not sure how to import images into heroku-->
                     <h2>Hello!</h2>
                     <div class="input-group">
                         <input type="text" name="loginUser" id="loginUser" required>
@@ -16,7 +18,7 @@
                         <label for="loginPassword">Password</label>
                     </div>
                     <input type="submit" value="Login" class="submit-btn">
-                    <a href="{% url 'reset_password' %}" class="forget_pw">Forgot your password?</a>
+                    <a href="reset_password.html" class="forget_pw">Forgot your password?</a>
                     <p>
                         <a href="#new-user" class="new-user">New User?</a>
                     </p>
@@ -24,7 +26,8 @@
                 </form>
 
                 <div id="new-user">
-                    <form method="POST" class="form">
+                    <form method="POST" class="form" action="">
+                        {% csrf_token %}
                         <a href="#" class="close">&times;</a>
                         <h2>New Sign Up</h2>
                         <div class="input-group">

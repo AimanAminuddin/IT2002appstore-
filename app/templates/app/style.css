@@ -15,6 +15,14 @@ body{
     align-items: center;
 }
 
+.resetpw{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .form{
     position: relative;
     width: 100%;
