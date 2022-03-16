@@ -1,11 +1,22 @@
 <html>
     <head>
-        <title>Login</title>
+        <title>Login Form</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <body>
             <div class="loginbox">
-                <img src="../../static/app/images/avatar.png" class="avatar">
-                
+                <form method="POST" class="form">
+                    <img src="../../static/app/images/avatar.png">
+                    <h2>Hello!</h2>
+                    <div class="input-group">
+                        <input type="text" name="loginUser" id="loginUser" required>
+                        <label for="loginUser">User ID</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="loginPassword" id="loginPassword" required>
+                        <label for="loginPassword">Password</label>
+                    </div>
+                    <input type="submit" value="Login" class="submit-btn">
+                </form>
             </div>
         </body>
     </head>
