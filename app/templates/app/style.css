@@ -112,6 +112,10 @@ body{
     color: inherit;
 }
 
+.forget_pw{
+    color: inherit;
+}
+
 #new-user{
     position: absolute;
     display: flex;
