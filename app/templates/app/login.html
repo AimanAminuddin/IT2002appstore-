@@ -16,7 +16,36 @@
                         <label for="loginPassword">Password</label>
                     </div>
                     <input type="submit" value="Login" class="submit-btn">
+                    <a href="#new-user" class="new-user">New User?</a>
                 </form>
+
+                <div id="new-user">
+                    <form method="POST" class="form">
+                        <a href="#" class="close">&times;</a>
+                        <h2>New Sign Up</h2>
+                        <div class="input-group">
+                            <input type="text" name="newLoginUser" id="newLoginUser" required>
+                            <label for="newLoginUser">User ID</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" name="email" id="email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="firstName" id="firstName" required>
+                            <label for="firstName">First Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="lastName" id="lastName" required>
+                            <label for="lastName">Last Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" name="newLoginPW" id="newLoginPw" required>
+                            <label for="newLoginPW">Password</label>
+                        </div>
+                        <input type="submit" value="Sign Up" class="signup-btn">
+                    </form>
+                </div>
             </div>
         </body>
     </head>
