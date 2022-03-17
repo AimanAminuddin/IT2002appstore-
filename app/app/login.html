@@ -7,7 +7,7 @@
             <div class="loginbox">
                 <form method="POST" class="form" action="mainpage.html"> 
                     {% csrf_token %} <!--im not sure what's the use of this-->
-                    <img src="../../static/app/images/avatar.png"> <!--not sure how to import images into heroku-->
+                    <img src="../static/avatar.png"> <!--not sure how to import images into heroku-->
                     <h2>Hello!</h2>
                     <div class="input-group">
                         <input type="text" name="loginUser" id="loginUser" required>
