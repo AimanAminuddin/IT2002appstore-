@@ -24,15 +24,10 @@ do
     DB_PASSWORD=$(cut -d "=" -f2- <<< $line | tr -d \')
   fi
 done < ".env"
-a = 1 
+
 URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
-# Run the scripts to insert data.
-#psql ${URI} -f sql/AppStoreClean.sql
-#psql ${URI} -f sql/AppStoreSchema.sql
-#psql ${URI} -f sql/AppStoreCustomers.sql
-#psql ${URI} -f sql/AppStoreGames.sql
-#psql ${URI} -f sql/AppStoreDownloads.sql
+
 
 psql ${URI} -f sql/AppClean.sql
 psql ${URI} -f sql/AirBnbSchema.sql
