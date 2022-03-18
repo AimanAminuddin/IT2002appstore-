@@ -12,11 +12,11 @@ def index(request):
     if request.POST:
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM customers WHERE customerid = %s", [request.POST['id']])
+                cursor.execute("DELETE FROM users WHERE user_id = %s", [request.POST['id']])
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers ORDER BY customerid")
+        cursor.execute("SELECT * FROM users ORDER BY user_id")
         customers = cursor.fetchall()
 
     result_dict = {'records': customers}
@@ -29,7 +29,7 @@ def view(request, id):
     
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+        cursor.execute("SELECT * FROM users WHERE user_id = %s", [id])
         customer = cursor.fetchone()
     result_dict = {'cust': customer}
 
@@ -72,7 +72,7 @@ def edit(request, id):
 
     # fetch the object related to passed id
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+        cursor.execute("SELECT * FROM users WHERE user_id = %s", [id])
         obj = cursor.fetchone()
 
     status = ''
@@ -81,11 +81,11 @@ def edit(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE customers SET first_name = %s, last_name = %s, email = %s, dob = %s, since = %s, country = %s WHERE customerid = %s"
+            cursor.execute("UPDATE users SET first_name = %s, last_name = %s, email = %s, password = %s, WHERE customerid = %s"
                     , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
-                        request.POST['dob'] , request.POST['since'], request.POST['country'], id ])
-            status = 'Customer edited successfully!'
-            cursor.execute("SELECT * FROM customers WHERE customerid = %s", [id])
+                        request.POST['password'], id ])
+            status = 'Users edited successfully!'
+            cursor.execute("SELECT * FROM users WHERE user_id = %s", [id])
             obj = cursor.fetchone()
 
 
