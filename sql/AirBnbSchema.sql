@@ -38,9 +38,9 @@ CREATE TABLE place(
 CREATE TABLE bookings (
   booking_id VARCHAR(64) PRIMARY KEY, 
   user_id VARCHAR(50) REFERENCES users(user_id) ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  place_id INTEGER REFERENCES place(address) ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED, 
+  place_id VARCHAR(50) REFERENCES place(address) ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED, 
   start_date date NOT NULL, 
-  end_date date NOT NULL CHECK(end_date >= start_date);
+  end_date date NOT NULL CHECK(end_date >= start_date));
 
 CREATE TABLE reviews(
   booking_id VARCHAR(64) PRIMARY KEY REFERENCES bookings(booking_id) ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED, 
