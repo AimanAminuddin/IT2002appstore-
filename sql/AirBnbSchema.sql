@@ -8,7 +8,7 @@ CREATE TABLE users (
   user_id VARCHAR(50) PRIMARY KEY, 
   email VARCHAR(50) UNIQUE NOT NULL,
   first_name VARCHAR(50) NOT NULL,
-  last_name VARCHAR(50) NOT NULL
+  last_name VARCHAR(50) NOT NULL,
   password VARCHAR(50) NOT NULL);
 
 CREATE TABLE hosts( 
