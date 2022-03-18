@@ -3,6 +3,8 @@ from django.db import connection
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def index(request):
@@ -93,3 +95,33 @@ def edit(request, id):
     context["status"] = status
  
     return render(request, "app/edit.html", context)
+
+
+
+
+
+def login_view(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        # Redirect to a success page.
+        request.session["username"] = username
+        
+        return HttpResponseRedirect(reverse("index"))
+    
+    else:
+        # Return an 'invalid login' error message.
+         return render(request, "login.html", {
+                "message": "Invalid username and/or password."
+            })
+
+
+def logout(request):
+    logout(request)
+    try:
+        del request.session['member_id']
+    except KeyError:
+        pass
+    return HttpResponse("You're logged out.")
