@@ -78,10 +78,10 @@ def edit(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE customers SET first_name = %s, last_name = %s, email = %s, password = %s, WHERE customerid = %s"
+            cursor.execute("UPDATE users SET first_name = %s, last_name = %s, email = %s, password = %s, WHERE customerid = %s"
                     , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
                         request.POST['password'], id ])
-            status = 'Customer edited successfully!'
+            status = 'Users edited successfully!'
             cursor.execute("SELECT * FROM users WHERE user_id = %s", [id])
             obj = cursor.fetchone()
 
