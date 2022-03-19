@@ -114,9 +114,7 @@ def login_view(request):
     
     else:
         # Return an 'invalid login' error message.
-         return render(request, "login.html", {
-                "message": "Invalid username and/or password."
-            })
+         return render(request, "login.html", {})
 
 
 def logout(request):
