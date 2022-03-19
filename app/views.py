@@ -100,11 +100,10 @@ def edit(request, id):
 
 
 def login_view(request):
-    #username = request.POST['username']
-    #password = request.POST['password']
-    username = request.POST.get('username')
-    
-    password = request.POST.get('password')
+    username = request.POST['username']
+    password = request.POST['password']
+    #username = request.POST.get('username')
+    #password = request.POST.get('password')
     user = authenticate(request, username=username, password=password)
     if user is not None:
         auth_login(request, user)
@@ -117,7 +116,7 @@ def login_view(request):
     
     else:
         # Return an 'invalid login' error message.
-         return render(request, "app/templates/app/login.html", {})
+         return render(request, "app/login.html", {})
 
 
 def logout(request):
