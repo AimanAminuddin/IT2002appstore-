@@ -115,7 +115,9 @@ def login_view(request):
 
             # return redirect('mainpage') <-- this is from what i saw on the youtube video
         else:
-            return redirect('login')
+            return render(request, "login.html", {
+                "message": "Invalid username and/or password."
+            })
     else:
         # Return an 'invalid login' error message.
          return render(request, "login.html")
