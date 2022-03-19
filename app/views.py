@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login
 # Create your views here.
 def index(request):
     """Shows the main page"""
