@@ -24,5 +24,4 @@ urlpatterns = [
 
     # Main page
     path('', app.views.login_view, name='login'),
-    path('/mainpage', )
 ]

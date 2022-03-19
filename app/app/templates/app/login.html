@@ -7,7 +7,7 @@
             <div class="loginbox">
                 <form method="POST" class="form" action="{% url 'mainpage' %}"> 
                     {% csrf_token %} <!--im not sure what's the use of this-->
-                    <img src="{% static 'avatar.png' %" alt="avatar_img"> 
+                    <img src="{% static 'avatar.png' alt="avatar_img" %}"> 
                     <h2>Hello!</h2>
                     <div class="input-group">
                         <input type="text" name="loginUser" required>
