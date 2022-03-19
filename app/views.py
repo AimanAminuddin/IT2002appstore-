@@ -109,16 +109,16 @@ def login_view(request):
             # Redirect to a success page.
             # request.session["username"] = username
             
-            return redirect('mainpage')
+            return redirect('app/mainpage.html')
 
             # return redirect('mainpage') <-- this is from what i saw on the youtube video
         else:
             messages.success(request, "There was an error, try again.")
-            return redirect('login')
+            return redirect('app/login.html')
     
     else:
         # Return an 'invalid login' error message.
-         return render(request, "login.html", {})
+         return render(request, "app/login.html", {})
 
 
 def logout(request):
