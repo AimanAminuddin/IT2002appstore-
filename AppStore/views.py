@@ -116,7 +116,7 @@ def login_view(request):
     
     else:
         # Return an 'invalid login' error message.
-         return render(request, "app/login.html", {})
+         return render(request, "login.html")
 
 
 def logout(request):
