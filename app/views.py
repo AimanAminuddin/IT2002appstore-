@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.contrib.auth import login
+from django.contrib.auth import login as auth_login
 # Create your views here.
 def index(request):
     """Shows the main page"""
@@ -100,25 +100,24 @@ def edit(request, id):
 
 
 def login_view(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            # Redirect to a success page.
-            # request.session["username"] = username
-            
-            return redirect('app/mainpage.html')
+    #username = request.POST['username']
+    #password = request.POST['password']
+    username = request.POST.get('username')
+    
+    password = request.POST.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        auth_login(request, user)
+        # Redirect to a success page.
+        # request.session["username"] = username
+        
+        return redirect('mainpage')
 
-            # return redirect('mainpage') <-- this is from what i saw on the youtube video
-        else:
-            messages.success(request, "There was an error, try again.")
-            return redirect('app/login.html')
+        # return redirect('mainpage') <-- this is from what i saw on the youtube video
     
     else:
         # Return an 'invalid login' error message.
-         return render(request, "app/login.html", {})
+         return render(request, "login.html", {})
 
 
 def logout(request):
