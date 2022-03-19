@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Main page
-    path('', app.views.login_view, name='login'),
+    path('/login', app.views.login_view, name='login'),
+    #path('/mainpage', )
 ]
