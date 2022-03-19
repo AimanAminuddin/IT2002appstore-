@@ -104,7 +104,7 @@ def login_view(request):
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        login(request, user)
+        auth_login(request, user)
         # Redirect to a success page.
         # request.session["username"] = username
         
