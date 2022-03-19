@@ -1,4 +1,4 @@
-NSERT INTO bookings(booking_id,user_id,place_id,start_date,end_date) VALUES ('4779556171','awifflercf','1 School Parkway','2021-01-19','2021-01-30');
+INSERT INTO bookings(booking_id,user_id,place_id,start_date,end_date) VALUES ('4779556171','awifflercf','1 School Parkway','2021-01-19','2021-01-30');
 INSERT INTO bookings(booking_id,user_id,place_id,start_date,end_date) VALUES ('1540607070','dkeigherd5','26 Corscot Junction','2021-01-18','2021-01-28');
 INSERT INTO bookings(booking_id,user_id,place_id,start_date,end_date) VALUES ('5335152133','hmacvean3v','8592 Northview Road','2021-01-17','2021-01-31');
 INSERT INTO bookings(booking_id,user_id,place_id,start_date,end_date) VALUES ('2886431893','rsummerly4a','7 Clove Point','2021-01-18','2021-01-31');
