@@ -110,6 +110,8 @@ def login_view(request):
         request.session["username"] = username
         
         return HttpResponseRedirect(reverse("index"))
+
+        # return redirect('mainpage') <-- this is from what i saw on the youtube video
     
     else:
         # Return an 'invalid login' error message.
