@@ -108,7 +108,7 @@ def login_view(request):
         # Redirect to a success page.
         request.session["username"] = username
         
-        return HttpResponseRedirect(reverse("index"))
+        return redirect('mainpage')
 
         # return redirect('mainpage') <-- this is from what i saw on the youtube video
     
