@@ -100,17 +100,18 @@ def edit(request, id):
 
 
 def login_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        auth_login(request, user)
-        # Redirect to a success page.
-        # request.session["username"] = username
-        
-        return redirect('mainpage')
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            # Redirect to a success page.
+            # request.session["username"] = username
+            
+            return redirect('mainpage')
 
-        # return redirect('mainpage') <-- this is from what i saw on the youtube video
+            # return redirect('mainpage') <-- this is from what i saw on the youtube video
     
     else:
         # Return an 'invalid login' error message.
