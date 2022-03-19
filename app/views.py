@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.db import connection
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-
+from django.contrib.auth import login as auth_login
 # Create your views here.
 def index(request):
     """Shows the main page"""
@@ -104,7 +104,7 @@ def login_view(request):
     password = request.POST['password']
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        login(request, user)
+        auth_login(request, user)
         # Redirect to a success page.
         request.session["username"] = username
         
