@@ -106,7 +106,7 @@ def login_view(request):
     if user is not None:
         login(request, user)
         # Redirect to a success page.
-        request.session["username"] = username
+        # request.session["username"] = username
         
         return redirect('mainpage')
 
