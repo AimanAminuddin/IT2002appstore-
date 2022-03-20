@@ -1,0 +1,59 @@
+{% load static %}
+<html>
+    <head>
+        <title>Login Form</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+        <body>
+            <div class="loginbox">
+                <form method="POST" class="form" action=""> 
+                    {% csrf_token %} <!--im not sure what's the use of this-->
+                    <img src="{% static 'avatar.png' alt="avatar_img" %}"> 
+                    <h2>Hello!</h2>
+                    <div class="input-group">
+                        <input type="text" name="loginUser" required>
+                        <label for="loginUser">User ID</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="loginPassword" required>
+                        <label for="loginPassword">Password</label>
+                    </div>
+                    <input type="submit" value="Login" class="submit-btn">
+                    <a href="reset_password.html" class="forget_pw">Forgot your password?</a>
+                    <p>
+                        <a href="#new-user" class="new-user">New User?</a>
+                    </p>
+                    
+                </form>
+
+                <div id="new-user">
+                    <form method="POST" class="form" action=""> 
+                        {% csrf_token %}
+                        <a href="#" class="close">&times;</a>
+                        <h2>New Sign Up</h2>
+                        <div class="input-group">
+                            <input type="text" name="newLoginUser" required>
+                            <label for="newLoginUser">User ID</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" name="email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="firstName" required>
+                            <label for="firstName">First Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="lastName" required>
+                            <label for="lastName">Last Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="password" name="newLoginPW" required>
+                            <label for="newLoginPW">Password</label>
+                        </div>
+                        <input type="submit" value="SignUp" class="signup-btn">
+                    </form>
+                </div>
+            </div>
+        </body>
+    </head>
+</html>
