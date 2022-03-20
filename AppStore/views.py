@@ -166,6 +166,9 @@ def register_request(request):
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
 
+def mainpage(request):
+	return render(request=request, template_name='home.html')
+
 def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
