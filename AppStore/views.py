@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth import login as auth_login
 from .forms import NewUserForm
+from django.contrib.auth.forms import AuthenticationForm #add this
 
 # create your views here 
 
