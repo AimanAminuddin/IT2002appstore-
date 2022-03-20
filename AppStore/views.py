@@ -167,7 +167,7 @@ def register_request(request):
 	return render (request=request, template_name="register.html", context={"register_form":form})
 
 def mainpage(request):
-	return render(request=request, template_name='mainpage.html')
+	return render(request=request, template_name='login.html')
 
 def logout_request(request):
 	logout(request)
