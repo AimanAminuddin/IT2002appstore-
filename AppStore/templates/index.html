@@ -1,9 +1,9 @@
 {% load static %}
 <html>
 <body>
-    <h2>Users in the Airbnbapp</h2>
-    <img src="{% static 'static/avatar.jpg' %}" width="10%"   alt="Discord"/><br/>
-    <a href="add">New user</a>
+    <h2>Customers in the App Store</h2>
+    <img src="{% static 'app/images/nus.jpg' %}" width="10%"   alt="NUS logo"/><br/>
+    <a href="add">New customer</a>
     <br/><br/>
     <table border=1>
         <thead>
@@ -14,17 +14,17 @@
         </thead>
         {% for user in records %}
         <tr>
-            <td> {{ user.5 }} </td>
+            <td> {{user.5}} </td>
             <td> {{ user.0 }} </td>
-            <td> {{ user.1 }} </td>
+            <td> {{user.1 }} </td>
             <td>
-                <a href="view/{{user.5}}"><button>View</button></a> | 
-                <a href="edit/{{user.5}}"><button>Edit</button></a>
+                <a href="view/{{cust.5}}"><button>View</button></a> | 
+                <a href="edit/{{cust.5}}"><button>Edit</button></a>
                 | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
-                <input type="hidden" name="id" value="{{user.5}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{user.5}}?');" type="submit" name="action" value="delete">Delete</button> 
+                <input type="hidden" name="id" value="{{cust.5}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{cust.5}}?');" type="submit" name="action" value="delete">Delete</button> 
               </form></td>
         </tr>
         {% endfor %}
