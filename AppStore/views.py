@@ -147,13 +147,7 @@ def login_view(request):
 	return render(request=request, template_name="login.html", context={"login_form":form})
 
 
-def logout(request):
-    logout(request)
-    try:
-        del request.session['member_id']
-    except KeyError:
-        pass
-    return HttpResponse("You're logged out.")
+
 
 def register_request(request):
 	if request.method == "POST":
