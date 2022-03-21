@@ -1,24 +1,30 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Django CRUD Operations</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+</head>
 <body>
-    <h2>Details for {{cust.3}} {{cust.0}}{{cust.1}}</h2>
-    <a href="/">Back to home</a>
-    <br/><br/>
-    <table style='text-align:left'>
-        <tr>
-            <th>User_id</th>
-            <td>:</td>
-            <td> {{ cust.0 }} </td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>:</td>
-            <td> {{ cust.1 }} </td>
-        </tr>
-        <tr>
-            <th>Password</th>
-            <td>:</td>
-            <td> {{ cust.2 }} </td>
-        </tr>
-    </table>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User_id</th>
+		<th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for user in Users %}  
+      <tr>
+        <td>{{user.user_id}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+	  {% endfor %} 
+	</tbody>
+</table>	
+</div>
 </body>
 </html>
