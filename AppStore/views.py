@@ -9,7 +9,10 @@ from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm #add this
 
 # create your views here 
-
+def show(request):
+    #students = Student.objects.all()
+    users = User.objects.all()
+    return render(request,"view.html",{'user':users})
 
 def index(request):
     """Shows the main page"""
