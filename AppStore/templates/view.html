@@ -1,16 +1,21 @@
 <html>
 <body>
-    <h2>Details for {{cust.0}}</h2>
+    <h2>Details for {{cust.5}}</h2>
     <a href="/">Back to home</a>
     <br/><br/>
     <table style='text-align:left'>
         <tr>
-            <th>User_id</th>
+            <th>Username</th>
+            <td>:</td>
+            <td> {{ cust.5 }} </td>
+        </tr>
+        <tr>
+            <th>Email</th>
             <td>:</td>
             <td> {{ cust.0 }} </td>
         </tr>
         <tr>
-            <th>Email</th>
+            <th>Password</th>
             <td>:</td>
             <td> {{ cust.2 }} </td>
         </tr>

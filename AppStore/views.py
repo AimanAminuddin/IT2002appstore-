@@ -8,11 +8,6 @@ from django.contrib.auth import login as auth_login
 from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm #add this
 
-# create your views here 
-def show(request):
-    #students = Student.objects.all()
-    users = User.objects.all()
-    return render(request,"view.html",{'user':users})
 
 def index(request):
     """Shows the main page"""
@@ -42,7 +37,7 @@ def view(request, id):
         customer = cursor.fetchone()
     result_dict = {'cust': customer}
 
-    return render(request,'app/view.html',result_dict)
+    return render(request,'view.html',result_dict)
 
 # Create your views here.
 def add(request):
