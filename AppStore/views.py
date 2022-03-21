@@ -167,4 +167,4 @@ def mainpage(request):
 def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
-	return redirect("mainpage")
+	return redirect("login")
