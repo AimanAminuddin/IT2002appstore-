@@ -28,5 +28,5 @@ urlpatterns = [
     path("register", views.register_request, name="register"),
     path("logout", views.logout_request, name= "logout"),
     
-    path("mainpage",views.show,name = "mainpage")
+    path("mainpage",views.index,name = "mainpage")
 ]
