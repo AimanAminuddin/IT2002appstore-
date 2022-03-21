@@ -14,17 +14,17 @@
         </thead>
         {% for cust in records %}
         <tr>
-            <td> {{ cust.5 }} </td>
-            <td> {{ cust.0 }} </td>
-            <td> {{ cust.1 }} </td>
+            <td> {{ user.0 }} </td>
+            <td> {{ user.1 }} </td>
+            <td> {{ user.2 }} </td>
             <td>
-                <a href="mainpage/view/{{cust.5}}"><button>View</button></a> | 
-                <a href="mainpage/edit/{{cust.5}}"><button>Edit</button></a>
+                <a href="mainpage/view/{{user.0}}"><button>View</button></a> | 
+                <a href="mainpage/edit/{{user.0}}"><button>Edit</button></a>
                 | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
-                <input type="hidden" name="id" value="{{cust.5}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{cust.5}}?');" type="submit" name="action" value="delete">Delete</button> 
+                <input type="hidden" name="id" value="{{user.5}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{user.5}}?');" type="submit" name="action" value="delete">Delete</button> 
               </form></td>
         </tr>
         {% endfor %}
