@@ -12,14 +12,14 @@
             <th>Email</th>
             <th>Action</th>
         </thead>
-        {% for cust in records %}
+        {% for user in records %}
         <tr>
+            <td> {{ user.5 }} </td>
             <td> {{ user.0 }} </td>
             <td> {{ user.1 }} </td>
-            <td> {{ user.2 }} </td>
             <td>
-                <a href="mainpage/view/{{user.0}}"><button>View</button></a> | 
-                <a href="mainpage/edit/{{user.0}}"><button>Edit</button></a>
+                <a href="mainpage/view/{{user.5}}"><button>View</button></a> | 
+                <a href="mainpage/edit/{{user.5}}"><button>Edit</button></a>
                 | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
