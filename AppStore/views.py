@@ -10,6 +10,7 @@ from django.contrib.auth.forms import AuthenticationForm #add this
 
 # create your views here 
 
+
 def index(request):
     """Shows the main page"""
 
@@ -55,17 +56,17 @@ def add(request):
             ## No customer with same id
             if customer == None:
                 ##TODO: date validation
-                cursor.execute("INSERT INTO customers VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                        , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
-                           request.POST['dob'] , request.POST['since'], request.POST['customerid'], request.POST['country'] ])
+                cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
+                        , [request.POST['user_id'], request.POST['email'], request.POST['password']
+                            ])
                 return redirect('index')    
             else:
-                status = 'Customer with ID %s already exists' % (request.POST['customerid'])
+                status = 'USER with ID %s already exists' % (request.POST['user_id'])
 
 
     context['status'] = status
  
-    return render(request, "app/add.html", context)
+    return render(request, "add.html", context)
 
 # Create your views here.
 def edit(request, id):
@@ -86,8 +87,8 @@ def edit(request, id):
     if request.POST:
         ##TODO: date validation
         with connection.cursor() as cursor:
-            cursor.execute("UPDATE users SET first_name = %s, last_name = %s, email = %s, password = %s, WHERE customerid = %s"
-                    , [request.POST['first_name'], request.POST['last_name'], request.POST['email'],
+            cursor.execute("UPDATE users SET user_id = %s, last_name = %s, email = %s, password = %s, WHERE customerid = %s"
+                    , [request.POST['first_name'], request.POST['email'],
                         request.POST['password'], id ])
             status = 'Users edited successfully!'
             cursor.execute("SELECT * FROM users WHERE user_id = %s", [id])
@@ -97,7 +98,7 @@ def edit(request, id):
     context["obj"] = obj
     context["status"] = status
  
-    return render(request, "app/edit.html", context)
+    return render(request, "edit.html", context)
 
 
 
