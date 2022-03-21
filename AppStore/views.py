@@ -21,9 +21,9 @@ def index(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM users ORDER BY user_id")
-        customers = cursor.fetchall()
+        users = cursor.fetchall()
 
-    result_dict = {'records': customers}
+    result_dict = {'records': users}
 
     return render(request,'index.html',result_dict)
 
