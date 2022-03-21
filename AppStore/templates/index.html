@@ -7,9 +7,9 @@
     <br/><br/>
     <table border=1>
         <thead>
+            <th></th>
             <th>Username</th>
             <th>Email</th>
-            <th>Password</th>
             <th>Action</th>
         </thead>
         {% for user in records %}
@@ -18,8 +18,8 @@
             <td> {{ user.0 }} </td>
             <td> {{ user.1 }} </td>
             <td>
-                <a href="view/{{user.0}}"><button>View</button></a> | 
-                <a href="edit/{{user.0}}"><button>Edit</button></a>
+                <a href="view/{{user.5}}"><button>View</button></a> | 
+                <a href="edit/{{user.5}}"><button>Edit</button></a>
                 | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
