@@ -49,7 +49,7 @@ def add(request):
         ## Check if customerid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM customers WHERE customerid = %s", [request.POST['customerid']])
+            cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
             customer = cursor.fetchone()
             ## No customer with same id
             if customer == None:
