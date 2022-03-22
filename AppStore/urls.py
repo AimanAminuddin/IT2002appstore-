@@ -29,5 +29,6 @@ urlpatterns = [
     path("logout", views.logout_request, name= "logout"),
     path("view/<str:id>", views.view, name='view'),
     path("mainpage",views.index,name = "mainpage"),
-    path('edit/<str:id>',views.edit, name='edit')
+    path('edit/<str:id>',views.edit, name='edit'),
+    path('add',views.add,name = 'add')
 ]
