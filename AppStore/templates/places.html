@@ -3,7 +3,6 @@
 <body>
     <h2>Places for booking</h2>
     <img src="{% static 'static/images/avatar.jpg' %}" width="10%"   alt="Discord"/><br/>
-    <a href="add">New user</a>
     <br/><br/>
     <table border=1>
         <thead>
@@ -21,7 +20,7 @@
             <td>{{place.3}}</td>
             <td>
                 <a href="view/{{place.1}}"><button>View</button></a> | 
-                <a href="review/{{place.1}}"><button>Edit</button></a>
+                <a href="reviews/{{place.1}}"><button>Reviews</button></a>
                 | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
