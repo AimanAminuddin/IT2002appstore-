@@ -20,13 +20,7 @@
             <td>{{place.3}}</td>
             <td>
                 <a href="view/{{place.1}}"><button>View</button></a> | 
-                <a href="reviews/{{place.1}}"><button>Reviews</button></a>
-                | 
-                <form method="POST" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{place.1}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{user.0}}?');" type="submit" name="action" value="delete">Delete</button> 
-              </form></td>
+                <a href="reviews/{{place.1}}"><button>Check Reviews</button></a>
         </tr>
         {% endfor %}
     </table>
