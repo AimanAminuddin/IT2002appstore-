@@ -165,6 +165,6 @@ def place_view(request):
         cursor.execute("SELECT * FROM place ORDER BY address")
         places = cursor.fetchall()
     
-    result_dict = {'record':places}
+    result_dict = {'records':places}
     return render(request,'places.html',result_dict)
     
