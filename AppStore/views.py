@@ -159,7 +159,7 @@ def index(request):
 
     return render(request,'index.html',result_dict) '''
 
-def place_view(request):
+def place_index(request):
     # show the place page 
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM place ORDER BY address")
