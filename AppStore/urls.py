@@ -32,5 +32,5 @@ urlpatterns = [
     path('edit/<str:id>',views.edit, name='edit'),
     path('add',views.add,name = 'add'),
     path('places',views.place_index,name = 'place_view'),
-    path("place_view/<str:id>",views.place_view,name = "places")
+    path("place_view/<str:id>",views.place_view,name = "place_view")
 ]
