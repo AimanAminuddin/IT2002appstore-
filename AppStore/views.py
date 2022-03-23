@@ -154,7 +154,7 @@ def place_index(request):
 def view(request, id):
     """Shows the main page"""
     
-    ## Use raw query to get a customer
+    ## Use raw query to g customer
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM users WHERE user_id = %s", [id])
         user = cursor.fetchone()
