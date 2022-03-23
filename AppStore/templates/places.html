@@ -1,0 +1,35 @@
+{% load static %}
+<html>
+<body>
+    <h2>Places for booking</h2>
+    <img src="{% static 'static/images/avatar.jpg' %}" width="10%"   alt="Discord"/><br/>
+    <a href="add">New user</a>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Address</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Price Per Night</th>
+            <th>Action</th>
+        </thead>
+        {% for place in records %}
+        <tr>
+            <td> {{place.1}} </td>
+            <td> {{place.2}} </td>
+            <td> {{place.4}} </td>
+            <td>{{place.3}}</td>
+            <td>
+                <a href="view/{{place.1}}"><button>View</button></a> | 
+                <a href="review/{{place.1}}"><button>Edit</button></a>
+                | 
+                <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{place.1}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{user.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+              </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
