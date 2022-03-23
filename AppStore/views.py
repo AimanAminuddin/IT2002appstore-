@@ -169,7 +169,7 @@ def place_view(request,id):
         place = cursor.fetchone()
     
     result_dict = {'place':place}
-    return render(request,'place_view.html',result_dict)
+    return render(request,'places.html',result_dict)
 
 
     
