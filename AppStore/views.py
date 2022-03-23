@@ -140,24 +140,7 @@ def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("login")
-'''
-def index(request):
-    """Shows the main page"""
 
-    ## Delete customer
-    if request.POST:
-        if request.POST['action'] == 'delete':
-            with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM users WHERE user_id = %s", [request.POST['id']])
-
-    ## Use raw query to get all objects
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM users ORDER BY user_id")
-        users = cursor.fetchall()
-
-    result_dict = {'records': users}
-
-    return render(request,'index.html',result_dict) '''
 
 def place_index(request):
     # show the place page 
@@ -167,4 +150,26 @@ def place_index(request):
     
     result_dict = {'records':places}
     return render(request,'places.html',result_dict)
+'''
+def view(request, id):
+    """Shows the main page"""
+    
+    ## Use raw query to get a customer
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM users WHERE user_id = %s", [id])
+        user = cursor.fetchone()
+    result_dict = {'user': user}
+
+    return render(request,'view.html',result_dict) ''' 
+
+def place_view(request,id): 
+    # find info for a specific place 
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM place WHERE address = %s",[id])
+        place = cursor.fetchone()
+    
+    result_dict = {'place':place}
+    return render(request,'place_view.html',result_dict)
+
+
     
