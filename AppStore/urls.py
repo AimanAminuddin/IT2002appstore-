@@ -30,5 +30,6 @@ urlpatterns = [
     path("view/<str:id>", views.view, name='view'),
     path("mainpage",views.index,name = "mainpage"),
     path('edit/<str:id>',views.edit, name='edit'),
-    path('add',views.add,name = 'add')
+    path('add',views.add,name = 'add'),
+    path('places/<str:id>',views.place_view,bane = 'place_view')
 ]
