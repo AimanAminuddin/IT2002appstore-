@@ -140,3 +140,31 @@ def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("login")
+'''
+def index(request):
+    """Shows the main page"""
+
+    ## Delete customer
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM users WHERE user_id = %s", [request.POST['id']])
+
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM users ORDER BY user_id")
+        users = cursor.fetchall()
+
+    result_dict = {'records': users}
+
+    return render(request,'index.html',result_dict) '''
+
+def place_view(request):
+    # show the place page 
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM place ORDER BY address")
+        places = cursor.fetchall()
+    
+    result_dict = {'record':places}
+    return render(request,'places.html',result_dict)
+    
