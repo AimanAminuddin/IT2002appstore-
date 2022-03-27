@@ -186,16 +186,25 @@ def print_best_places(request):
     # if there a city where none of the places are booked 
     # assign null to address and 0 to average_rating 
     with connection.cursor() as cursor:
-        query = """SELECT p.address,p.city_id,p.country_id,ROUND(AVG(r.rating),2) AS average_rating 
-        FROM place p,bookings b,reviews r 
+        query = """
+        SELECT p.address,p.city_id,p.country_id,ROUND(AVG(r.rating),2) AS average_rating 
+        FROM place p,bookings b,reviews r
         WHERE p.address = b.place_id AND b.booking_id = r.booking_id 
-        GROUP BY p.address,p.city_id,p.country_id 
+        GROUP BY p.address,p.city_id,p.country_id
         HAVING AVG(r.rating) >= ALL(
             SELECT AVG(r1.rating)
             FROM place p1,bookings b1,reviews r1 
             WHERE p1.address = b1.place_id AND b1.booking_id = r1.booking_id AND 
-            p.country_id = p1.country_id 
+            p.city_id = p1.city_id AND p.country_id = p1.country_id 
             GROUP BY p1.address)
+        UNION 
+        SELECT NULL AS address,c.name,c.country,0 AS average_rating 
+        FROM cities c 
+        LEFT JOIN (SELECT p.city_id,p.country_id 
+		  FROM bookings b,place p 
+		  WHERE b.place_id = p.address) AS temp ON temp.city_id = c.name AND 
+          temp.country_id = c.country
+          WHERE temp.city_id ISNULL ORDER BY average_rating DESC
         """
         cursor.execute(query)
         best_places = cursor.fetchall()
