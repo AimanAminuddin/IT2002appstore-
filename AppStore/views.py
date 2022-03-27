@@ -210,6 +210,6 @@ def print_best_places(request):
         best_places = cursor.fetchall()
     
     result_dict = {'records':best_places}
-    return render(request,'best_places.html',result_dict)
+    return render(request,'Bestplaces.html',result_dict)
 
     
