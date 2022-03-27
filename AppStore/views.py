@@ -1,3 +1,5 @@
+from curses import resetty
+from unittest import result
 from django.shortcuts import render, redirect
 from django.db import connection
 from django.contrib.auth.models import User
@@ -171,5 +173,18 @@ def place_view(request,id):
     result_dict = {'place':place}
     return render(request,'place_view.html',result_dict)
 
+def print_reviews(request,id):
+    # print reviews of all a particular place 
+    with connection.cursor() as cursor:
+        query = """SELECT p.address,r.booking_id,r.review,r.rating 
+        FROM bookings b,reviews r,place p 
+        WHERE b.booking_id = r.booking_id AND b.place_id = p.address 
+        GROUP BY p.address,r.booking_id,r.review,r.rating 
+        HAVING p.address = %s
+        """
+        cursor.execute(query,[id])
+        review = cursor.fetchone()
+        result_dict = {'review':review}
+        return render(request,'review_view.html',result_dict)
 
     
