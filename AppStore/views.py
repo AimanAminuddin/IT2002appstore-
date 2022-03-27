@@ -152,17 +152,7 @@ def place_index(request):
     
     result_dict = {'records':places}
     return render(request,'places.html',result_dict)
-'''
-def view(request, id):
-    """Shows the main page"""
-    
-    ## Use raw query to g customer
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM users WHERE user_id = %s", [id])
-        user = cursor
-    result_dict = {'user': user}
 
-    return render(request,'view.html',result_dict) ''' 
 
 def place_view(request,id): 
     # find info for a specific place 
@@ -173,8 +163,19 @@ def place_view(request,id):
     result_dict = {'place':place}
     return render(request,'place_view.html',result_dict)
 
+"""
+def place_index(request):
+    # show the place page 
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM place ORDER BY address")
+        places = cursor.fetchall()
+    
+    result_dict = {'records':places}
+    return render(request,'places.html',result_dict)
+"""
+
 def print_reviews(request,id):
-    # print reviews of all a particular place 
+    # print all reviews of  a particular place 
     with connection.cursor() as cursor:
         query = """SELECT p.address,r.booking_id,r.review,r.rating 
         FROM bookings b,reviews r,place p 
@@ -184,7 +185,7 @@ def print_reviews(request,id):
         """
         cursor.execute(query,[id])
         review = cursor.fetchone()
-        result_dict = {'review':review}
+        result_dict = {'records':review}
         return render(request,'review_view.html',result_dict)
 
     
