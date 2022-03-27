@@ -195,8 +195,7 @@ def print_best_places(request):
             FROM place p1,bookings b1,reviews r1 
             WHERE p1.address = b1.place_id AND b1.booking_id = r1.booking_id AND 
             p.country_id = p1.country_id 
-            GROUP BY p1.address 
-        )
+            GROUP BY p1.address)
         UNION
         SELECT NULL AS address,c.name,c.country 0 AS average_rating
         FROM cities c 
@@ -207,7 +206,10 @@ def print_best_places(request):
         ORDER BY average_rating DESC
         """
 
+        cursor.execute(query)
         best_places = cursor.fetchall()
+
+    
     
     result_dict = {'records':best_places}
     return render(request,'Bestplaces.html',result_dict)
