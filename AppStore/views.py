@@ -163,16 +163,7 @@ def place_view(request,id):
     result_dict = {'place':place}
     return render(request,'place_view.html',result_dict)
 
-"""
-def place_index(request):
-    # show the place page 
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM place ORDER BY address")
-        places = cursor.fetchall()
-    
-    result_dict = {'records':places}
-    return render(request,'places.html',result_dict)
-"""
+
 
 def print_reviews(request,id):
     # print all reviews of  a particular place 
@@ -184,7 +175,7 @@ def print_reviews(request,id):
         HAVING p.address = %s
         """
         cursor.execute(query,[id])
-        review = cursor.fetchone()
+        review = cursor.fetchall()
         result_dict = {'records':review}
         return render(request,'review_view.html',result_dict)
 
