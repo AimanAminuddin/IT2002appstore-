@@ -197,7 +197,7 @@ def print_best_places(request):
             p.country_id = p1.country_id 
             GROUP BY p1.address)
         UNION
-        SELECT NULL AS address,c.name,c.country 0 AS average_rating
+        SELECT NULL AS address,c.name,c.country,0 AS average_rating
         FROM cities c 
         LEFT JOIN (SELECT p.city_id,p.country_id
         FROM bookings b,place p 
