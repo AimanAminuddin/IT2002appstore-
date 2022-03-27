@@ -5,30 +5,24 @@
     <title>IT2002</title>
 </head>
 <body>
-    <h2>Users in the AirBnb App</h2>
+    <h2>Best Places in Each City</h2>
     <img src="{% static 'static/avatar.jpg' %}" width="10%"   alt="Discord"/><br/>
-    <a href="add">New user</a>
-    <br/><br/>
     <table border=1>
         <thead>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Password</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Average Rating</th>
             <th>Action</th>
         </thead>
-        {% for user in records %}
+        {% for best_places in records %}
         <tr>
-            <td> {{user.0}} </td>
-            <td> {{user.1}} </td>
-            <td> {{user.2}} </td>
+            <td> {{best_places.0}} </td>
+            <td> {{best_places.1}} </td>
+            <td> {{best_places.2}} </td>
+            <td>{{best_places.3}}</td>
             <td>
                 <a href="view/{{user.0}}"><button>View</button></a> | 
-                <a href="edit/{{user.0}}"><button>Edit</button></a>
-                | 
-                <form method="POST" style="display: inline;">
-                {% csrf_token %}
-                <input type="hidden" name="id" value="{{user.0}}"/>
-                <button onclick="return confirm('Are you sure you want to delete {{user.0}}?');" type="submit" name="action" value="delete">Delete</button> 
               </form></td>
         </tr>
         {% endfor %}
