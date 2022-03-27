@@ -214,4 +214,5 @@ def print_best_places(request):
     result_dict = {'records':best_places}
     return render(request,'Bestplaces.html',result_dict)
 
+
     
