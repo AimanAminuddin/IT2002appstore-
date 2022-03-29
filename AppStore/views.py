@@ -68,6 +68,32 @@ def add(request):
  
     return render(request, "add.html", context)
 
+def new_user_add(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
+            customer = cursor.fetchone()
+            ## No customer with same id
+            if customer == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
+                        , [request.POST['user_id'], request.POST['email'], request.POST['password']
+                            ])
+                return redirect('login')    
+            else:
+                status = 'USER with ID %s already exists' % (request.POST['user_id'])
+
+
+    context['status'] = status
+ 
+    return render(request, "betterregister.html", context)
+
 # Create your views here.
 def edit(request, id):
     """Shows the main page"""
