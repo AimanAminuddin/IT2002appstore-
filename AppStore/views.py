@@ -195,7 +195,7 @@ def register_view(request):
                     else:
                         # successfully create a new user 
                         cursor.execute("INSERT INTO users VALUES(%s,%s,%s)",[username,email,password])
-                        return redirect("login")
+                        return HttpResponseRedirect(reverse("login"))
                     
             
         

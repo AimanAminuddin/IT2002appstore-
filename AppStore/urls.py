@@ -25,7 +25,7 @@ urlpatterns = [
     # Main page
     path("",views.login_request,name = 'login'),  # type: ignore
     path("login", views.login_request, name='login'), #type: ignore
-    path("register", views.register_request, name="register"),
+    path("register", views.register_view, name="register"),
     path("logout", views.logout_request, name= "logout"),
     path("view/<str:id>", views.view, name='view'),
     path("mainpage",views.index,name = "mainpage"),
