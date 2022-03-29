@@ -5,7 +5,7 @@ from django.db import connection
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import login as auth_login
 from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm #add this
@@ -141,6 +141,10 @@ def login_request(request):
             # user is not signed up 
             else:
                 return render(request, "login.html", {"message": "Invalid username and/or password."})
+        
+    else:
+        form = AuthenticationForm()
+	    return render(request=request, template_name="login.html", context={"login_form":form})
 
 def register_request(request):
 	if request.method == "POST":
