@@ -7,7 +7,7 @@
     <h2>Places for booking</h2>
     {% if messages %}
     {% for message in messages %}
-        {% elif message.tags == 'info'%}
+        {% if message.tags == 'info'%}
             <script>M.toast({html: "{{message}}", classes: 'blue rounded', displayLength:2000});</script>
         {% endif %}
     {% endfor %}
