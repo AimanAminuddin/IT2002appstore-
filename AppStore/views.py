@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import login as auth_login
 from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm #add this
-
+from django.urls import reverse
 
 def index(request):
     """Shows the main page"""
@@ -135,7 +135,8 @@ def login_request(request):
             # user already signed up 
             if user_id is not None and password is not None:
                 messages.info(request, f"You are now logged in as {username}.")
-                return redirect("places")
+                return HttpResponseRedirect(reverse("index"))
+        
             
             # user is not signed up 
             else:
