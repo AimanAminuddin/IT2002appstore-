@@ -121,7 +121,26 @@ def login_view(request):
 	return render(request=request, template_name="login.html", context={"login_form":form})
 
 
-
+def login_request(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.Post.get('password')
+        
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT user_id,password FROM users WHERE user_id = %s AND password = %s",[])
+            information = cursor.fetchone()
+            user_id = information[0]
+            password = information[1]
+            
+            # user already signed up 
+            if user_id is not None and password is not None:
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect("places")
+            
+            # user is not signed up 
+            else:
+                messages.error(request,"Invalid username or password.")
+    
 
 def register_request(request):
 	if request.method == "POST":
