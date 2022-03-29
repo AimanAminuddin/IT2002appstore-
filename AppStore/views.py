@@ -199,9 +199,10 @@ def register_view(request):
                     
             
         
-        # check that 
+        # there are errors in the registration. Do again! 
     else:
-        return render(request,"register.html",context)
+        form = NewUserForm()
+        return render (request=request, template_name="register.html", context={"register_form":form})
     
 def mainpage(request):
 	return render(request=request, template_name='mainpage.html')
