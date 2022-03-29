@@ -127,7 +127,7 @@ def login_request(request):
         password = request.POST.get('password')
         
         with connection.cursor() as cursor:
-            cursor.execute("SELECT user_id,password FROM users WHERE user_id = %s AND password = %s",[])
+            cursor.execute("SELECT user_id,password FROM users WHERE user_id = %s AND password = %s")
             information = cursor.fetchone()
             user_id = information[0]
             password = information[1]
