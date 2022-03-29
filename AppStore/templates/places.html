@@ -5,10 +5,16 @@
 </head>
 <body>
     <h2>Places for booking</h2>
-    <img src="{% static 'static/avatar.jpg' %}" width="10%"   alt="Discord"/><br/>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+    </div>
+    {% endfor %}
+{% endif %}
     <br/><br/>
     <a href="/bestplaces">Find out Top Places in Each City!</a><br/>
-    <a href="logout"><button onclick="alert('Logout Successfully!')">Logout</button></a> 
+    <a href="logout"><button>Logout</button></a> 
     <br/><br/>
     <table border=1>
         <thead>
