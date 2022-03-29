@@ -159,6 +159,50 @@ def register_request(request):
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
 
+def register_view(request):
+    context = {}
+    status = ''
+    if request.method == "POST":
+        username = request.POST.get('username')
+        email = request.POST.get("email")
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+        
+        if password != password2:
+            status = 'Password mismatch'
+            context['status'] = status
+        
+        elif len(password) < 8:
+            status = "Password should be at least 8 characters"
+            context['status'] = status
+        
+        else:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM users WHERE user_id = %s",[username])
+                information1 = cursor.fetchone()
+                if information1 is not None: 
+                    # sombody has used up the username 
+                    status = "User already exists!"
+                    context['status'] = status
+                else:
+                    cursor.execute("SELECT * FROM users WHERE email = %s",[email])
+                    information2 = cursor.fetchone()
+                    
+                    if information2 is not None:
+                        # sombody has used this email 
+                        status = "Email has already been taken!"
+                        context['status'] = status
+                    else:
+                        # successfully create a new user 
+                        cursor.execute("INSERT INTO users VALUES(%s,%s,%s)",[username,email,password])
+                        return redirect("login")
+                    
+            
+        
+        # check that 
+    else:
+        return render(request,"register.html",context)
+    
 def mainpage(request):
 	return render(request=request, template_name='mainpage.html')
 
