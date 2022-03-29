@@ -147,17 +147,7 @@ def login_request(request):
     form = AuthenticationForm()
     return render(request=request, template_name="login.html", context={"login_form":form})
 
-def register_request(request):
-	if request.method == "POST":
-		form = NewUserForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			auth_login(request, user)
-			messages.success(request, "Registration successful." )
-			return redirect("mainpage")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = NewUserForm()
-	return render (request=request, template_name="register.html", context={"register_form":form})
+
 
 def register_view(request):
     context = {}
