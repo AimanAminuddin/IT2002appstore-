@@ -124,7 +124,7 @@ def login_view(request):
 def login_request(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        password = request.Post.get('password')
+        password = request.POST.get('password')
         
         with connection.cursor() as cursor:
             cursor.execute("SELECT user_id,password FROM users WHERE user_id = %s AND password = %s",[])
