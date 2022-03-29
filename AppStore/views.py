@@ -139,7 +139,7 @@ def login_request(request):
                 user_id = information[0]
                 password = information[1]
                 messages.info(request, f"You are now logged in as {user_id}.")
-                return HttpResponseRedirect(reverse("index"))
+                return HttpResponseRedirect(reverse("places"))
 
     form = AuthenticationForm()
     return render(request=request, template_name="login.html", context={"login_form":form})
