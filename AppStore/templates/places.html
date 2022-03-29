@@ -5,12 +5,7 @@
 </head>
 <body>
     <h2>Places for booking</h2>
-    {% if messages %}
-    <div class="alert alert-{{ messages.info.tags }}">
-            {{ messages.info }}
-    </div>
-    {% endfor %}
-{% endif %}
+<h1>Welcome to AirBnb: {{user_id}}!</h1>
     <br/><br/>
     <a href="/bestplaces">Find out Top Places in Each City!</a><br/>
     <a href="logout"><button>Logout</button></a> 
