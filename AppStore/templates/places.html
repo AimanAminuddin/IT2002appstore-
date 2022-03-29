@@ -6,9 +6,8 @@
 <body>
     <h2>Places for booking</h2>
     {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">
-            {{ message }}
+    <div class="alert alert-{{ messages.info.tags }}">
+            {{ messages.info }}
     </div>
     {% endfor %}
 {% endif %}
