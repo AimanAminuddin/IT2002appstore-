@@ -23,8 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # Main page
-    path("",views.login_request,name = 'login'),  # type: ignore
-    path("login", views.login_request, name='login'), #type: ignore
+    path("",views.login_request,name = 'login'),  
+    path("login", views.login_request, name='login'), 
     path("register", views.register_view, name="register"),
     path("logout", views.logout_request, name= "logout"),
     path("view/<str:id>", views.view, name='view'),
