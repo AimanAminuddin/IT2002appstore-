@@ -59,7 +59,7 @@ def add(request):
                 cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
                         , [request.POST['user_id'], request.POST['email'], request.POST['password']
                             ])
-                return redirect('mainpage')    
+                return redirect('login')    
             else:
                 status = 'USER with ID %s already exists' % (request.POST['user_id'])
 
