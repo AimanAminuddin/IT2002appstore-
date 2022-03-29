@@ -139,8 +139,7 @@ def login_request(request):
             
             # user is not signed up 
             else:
-                messages.error(request,"Invalid username or password.")
-    
+                return render(request, "login.html", {"message": "Invalid username and/or password."})
 
 def register_request(request):
 	if request.method == "POST":
