@@ -66,7 +66,7 @@ def add(request):
 
     context['status'] = status
  
-    return render(request, "betterregister.html", context)
+    return render(request, "add.html", context)
 
 
 # Create your views here.
