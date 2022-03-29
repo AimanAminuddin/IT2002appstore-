@@ -140,11 +140,10 @@ def login_request(request):
             
             # user is not signed up 
             else:
-                return render(request, "login.html", {"message": "Invalid username and/or password."})
-        
-    else:
-        form = AuthenticationForm()
-        return render(request=request, template_name="login.html", context={"login_form":form})
+                messages.error(request,"Invalid username or password.")
+
+    form = AuthenticationForm()
+    return render(request=request, template_name="login.html", context={"login_form":form})
 
 def register_request(request):
 	if request.method == "POST":
