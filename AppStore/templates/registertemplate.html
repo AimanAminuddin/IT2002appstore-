@@ -1,28 +1,27 @@
 {% block body %}
 
-<div id="login-box">
-    <div class="left">
-      <h1>Register</h1>
-      <form action="{% url 'register' %}" method="post">
-        {% csrf_token %}
-      <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="email" placeholder="E-mail" />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="password2" name="password2" placeholder="Password Confirmation" />
-      
-      <input type="submit" name="signup_submit" value="Register" />
+    <div class="container">
+        <h2>Register</h2>
+
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Email Address">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password2" name="confirmation" placeholder="Confirm Password">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Register">
+        </form>
+
+        Already have an account? <a href="{% url 'login' %}">Login here.</a>
     </div>
-    Already have an account? <a href="{% url 'login' %}">Login here.</a>
-    </div>
-    <div class="right">
-      <span class="loginwith">Sign in with<br />social network</span>
-      
-      <button class="social-signin facebook">Log in with facebook</button>
-      <button class="social-signin twitter">Log in with Twitter</button>
-      <button class="social-signin google">Log in with Google+</button>
-    </div>
-    <div class="or">OR</div>
-  </div>
     
 {% endblock %}
 
