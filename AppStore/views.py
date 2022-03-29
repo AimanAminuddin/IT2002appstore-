@@ -196,12 +196,8 @@ def register_view(request):
                         # successfully create a new user 
                         cursor.execute("INSERT INTO users VALUES(%s,%s,%s)",[username,email,password])
                         return HttpResponseRedirect(reverse("login"))
-                    
-            
-        
-        # there are errors in the registration. Do again! 
     else:
-        return render (request,"registertemplate.html",context)
+        return render(request,"registertemplate.html",context)
     
 def mainpage(request):
 	return render(request=request, template_name='mainpage.html')
