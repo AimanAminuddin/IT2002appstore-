@@ -130,18 +130,16 @@ def login_request(request):
             cursor.execute("SELECT user_id,password FROM users WHERE user_id =%s AND password =%s",
                            [username,password])
             information = cursor.fetchone()
-            user_id = information[0]
-            password = information[1]
+            
+            if information is None:
+                messages.error(request,"Invalid username or password.")
             
             # user already signed up 
-            if user_id is not None and password is not None:
-                messages.info(request, f"You are now logged in as {username}.")
-                return HttpResponseRedirect(reverse("index"))
-        
-            
-            # user is not signed up 
             else:
-                messages.error(request,"Invalid username or password.")
+                user_id = information[0]
+                password = information[1]
+                messages.info(request, f"You are now logged in as {user_id}.")
+                return HttpResponseRedirect(reverse("index"))
 
     form = AuthenticationForm()
     return render(request=request, template_name="login.html", context={"login_form":form})
