@@ -171,10 +171,12 @@ def register_view(request):
         if password != password2:
             status = 'Password mismatch'
             context['status'] = status
-        
+            return render(request,"template.html",context)
+            
         elif len(password) < 8:
             status = "Password should be at least 8 characters"
             context['status'] = status
+            return render(request,"template.html",context)
         
         else:
             with connection.cursor() as cursor:
@@ -184,6 +186,7 @@ def register_view(request):
                     # sombody has used up the username 
                     status = "User already exists!"
                     context['status'] = status
+                    return render(request,"template.html",context)
                 else:
                     cursor.execute("SELECT * FROM users WHERE email = %s",[email])
                     information2 = cursor.fetchone()
@@ -192,12 +195,13 @@ def register_view(request):
                         # sombody has used this email 
                         status = "Email has already been taken!"
                         context['status'] = status
+                        return render(request,"template.html",context)
                     else:
                         # successfully create a new user 
                         cursor.execute("INSERT INTO users VALUES(%s,%s,%s)",[username,email,password])
                         return HttpResponseRedirect(reverse("login"))
     else:
-        return render(request,"registertemplate.html",context)
+        return render(request,"template.html",context)
     
 def mainpage(request):
 	return render(request=request, template_name='mainpage.html')
