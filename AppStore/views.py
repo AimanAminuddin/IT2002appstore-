@@ -194,8 +194,7 @@ def register_view(request):
     else:
         return render(request,"template.html",context)
     
-def mainpage(request):
-	return render(request=request, template_name='mainpage.html')
+
 
 def logout_request(request):
 	logout(request)
@@ -221,6 +220,20 @@ def place_view(request,id):
     
     result_dict = {'place':place}
     return render(request,'place_view.html',result_dict)
+
+def place_schedule(request,id):
+    # find booking schedule for a specific place 
+    with connection.cursor() as cursor:
+        query = """SELECT u.email AS rentee_email,b.start_date,b.end_date
+        FROM place p,bookings b,users u
+        WHERE p.address = b.place_id AND b.user_id = u.user_id AND 
+        p.address = %s"""
+        cursor.execute(query, [id])
+        booking = cursor.fetchall()
+    
+    result_dict = {'records':booking}
+    
+    return render(request,'schedule.html',result_dict)
 
 
 
