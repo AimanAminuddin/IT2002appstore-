@@ -10,6 +10,7 @@ from django.contrib.auth import login as auth_login
 from .forms import NewUserForm
 from django.contrib.auth.forms import AuthenticationForm #add this
 from django.urls import reverse
+import datetime 
 
 def index(request):
     """Shows the main page"""
@@ -266,12 +267,57 @@ def print_best_places(request):
     return render(request,'Bestplaces.html',result_dict)
 
 
-def place_booking(request,id):
+def place_booking(request):
     context = {}
     status = ''
-    # get current user Username
     
-    return 1 
+    if request.method == "POST": 
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        start_date = request.POST.get("start_date")
+        end_date = request.POST.get("end_date")
+        
+        # check that username and password are correct 
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT user_id FROM users WHERE user_id = %s",username)
+            user_id = cursor.fetchone()
+            # entered wrong non-existing username 
+            if user_id is None: 
+                status = 'Invalid Username or Password'
+            else: 
+                cursor.execute("SELECT password FROM users WHERE user_id = %s AND password = %s",[user_id,password])
+                real_password = cursor.fetchone()
+                if real_password is None:
+                    status = "Invalid Username or Password"
+                else:
+                    # check start_date <= end_date for table integrity 
+                    start = start_date.split("/")
+                    end = end_date.split("/")
+                    
+                    d1 = datetime.datetime(int(start[0]),int(start[1]),int(start[2]))
+                    d2 = datetime.datetime(int(end[0]),int(end[1]),int(end[2]))
+                    
+                    if d1 > d2: 
+                        status = 'Start Date is later then End Date!'
+                    else:
+                        # there are no errors,add the booking into the bookings table 
+                        return HttpResponseRedirect(reverse("place"))
+                        
+        
+        context['status'] = status 
+        return render(request,"booking.html",context)
+                    
+        
+    else:
+        return render(request,"booking.html",context)
+                    
+      
+        
+    
+    
+    
+               # check that start_date <= end_date 
+    
 
 
     
