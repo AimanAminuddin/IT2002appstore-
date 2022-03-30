@@ -276,6 +276,7 @@ def place_booking(request):
         password = request.POST.get("password")
         start_date = request.POST.get("start_date")
         end_date = request.POST.get("end_date")
+        address = request.POST.get("place")
         
         # check that username and password are correct 
         with connection.cursor() as cursor:
@@ -300,8 +301,14 @@ def place_booking(request):
                     if d1 > d2: 
                         status = 'Start Date is later then End Date!'
                     else:
+                        # check that place in the place table as well 
+                        cursor.execute("SELECT address FROM place WHERE address =%s",address)
                         # there are no errors,add the booking into the bookings table 
-                        return HttpResponseRedirect(reverse("place"))
+                        place = cursor.fetchone()
+                        if place is None:
+                            status = "Place does not exist"
+                        else:
+                            return HttpResponseRedirect(reverse("place"))
                         
         
         context['status'] = status 
