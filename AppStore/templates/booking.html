@@ -1,0 +1,22 @@
+<html>
+<body>
+    <h2>Booking</h2>
+    <a href="/places">Back to Places</a>
+
+    <p style="color:red">{{ status|safe }}</p>
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+        <div id="div_id_user_name" class="control-group"> <label for="id_user_name" class="control-label requiredField">
+        Username<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="user_id" maxlength="64" class="textinput textInput" required="" id="id_user_name"> </div> </div> <div id="div_id_place" class="control-group"> <label for="id_place" class="control-label requiredField">
+        Place<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="place" maxlength="64" class="textinput textInput" required="" id="id_place"> </div> </div> <div id="div_id_password" class="control-group"> <label for="id_password" class="control-label requiredField">
+        Password<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="password" maxlength="64" class="textinput textInput" required="" id="id_password"> </div> </div> 
+        
+
+        <br>
+        <button type="submit" value="Add">Register</button>
+    </form>
+</body>
+</html>
