@@ -267,6 +267,10 @@ def print_best_places(request):
 
 
 def place_booking(request,id):
+    context = {}
+    status = ''
+    # get current user Username
+    
     return 1 
 
 
