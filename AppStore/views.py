@@ -267,64 +267,58 @@ def print_best_places(request):
     return render(request,'Bestplaces.html',result_dict)
 
 
+
 def place_booking(request):
     context = {}
     status = ''
-    
-    if request.method == "POST": 
+    if request.method == "POST":
+        
         username = request.POST.get("username")
         password = request.POST.get("password")
         start_date = request.POST.get("start_date")
         end_date = request.POST.get("end_date")
         address = request.POST.get("place")
-        
-        # check that username and password are correct 
         with connection.cursor() as cursor:
-            cursor.execute("SELECT user_id FROM users WHERE user_id = %s",username)
+            # check if user or password invalid 
+            cursor.execute("SELECT user_id FROM users WHERE user_id =%s",username)
             user_id = cursor.fetchone()
-            # entered wrong non-existing username 
-            if user_id is None: 
-                status = 'Invalid Username or Password'
-            else: 
-                cursor.execute("SELECT password FROM users WHERE user_id = %s AND password = %s",[user_id,password])
-                real_password = cursor.fetchone()
-                if real_password is None:
-                    status = "Invalid Username or Password"
-                else:
-                    # check start_date <= end_date for table integrity 
-                    start = start_date.split("/")
-                    end = end_date.split("/")
-                    
-                    d1 = datetime.datetime(int(start[0]),int(start[1]),int(start[2]))
-                    d2 = datetime.datetime(int(end[0]),int(end[1]),int(end[2]))
-                    
-                    if d1 > d2: 
-                        status = 'Start Date is later then End Date!'
-                    else:
-                        # check that place in the place table as well 
-                        cursor.execute("SELECT address FROM place WHERE address =%s",address)
-                        # there are no errors,add the booking into the bookings table 
-                        place = cursor.fetchone()
-                        if place is None:
-                            status = "Place does not exist"
-                        else:
-                            return HttpResponseRedirect(reverse("place"))
-                        
+            cursor.execute("SELECT password FROM users WHERE user_id =%s",password)
+            real_password = cursor.fetchone()
+            
+            # check if place exists 
+            cursor.execute("SELECT address FROM place WHERE address =%s",address)
+            place = cursor.fetchone()
+            
+            # check if  end date >= start date
+            start = start_date.split("/")
+            end = end_date.split("/")
+            d1 = datetime.datetime(int(start[2]),int(start[1]),int(start[0]))
+            d2 = datetime.datetime(int(end[2]),int(end[1]),int(end[0]))
+            
+            # check if there are clashes 
+            # just need to check if start date in between another start and end 
+            # end date in between start and end date 
+            
+            
+            if user_id is None or real_password is None: 
+                status = "Invalid Username or Password"
+            
+            elif place is None: 
+                status = "Place does not exist"
+            
+            elif d1 > d2: 
+                status = "Start Date cannot be later then End Date"
+            
+            elif d1 == d2: 
+                status = "There is a clash in booking!"
+            
+            else:
+                # insert new booking into booking table 
+                return HttpResponseRedirect(reverse("place"))
         
         context['status'] = status 
         return render(request,"booking.html",context)
-                    
-        
     else:
+        # error in booking 
+        context['status'] = status 
         return render(request,"booking.html",context)
-                    
-      
-        
-    
-    
-    
-               # check that start_date <= end_date 
-    
-
-
-    
