@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+<head>
+    <title>IT2002</title>
+</head>
+<body>
+    <h2>Booking Schedule</h2>
+    <a href="/places">Back to Available Places</a>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Rentee Email Address</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </thead>
+        {% for booking in records %}
+        <tr>
+            <td> {{booking.0}} </td>
+            <td> {{booking.1}} </td>
+            <td> {{booking.2}} </td>
+            <td>{{place.3}}</td>
+        {% endfor %}
+    </table>
+</body>
+</html>
