@@ -35,5 +35,5 @@ urlpatterns = [
     path("place_view/<str:id>",views.place_view,name = "place_view"),
     path("reviews/<str:id>",views.print_reviews,name = "place_review"),
     path("bestplaces",views.print_best_places,name = "bestplaces"),
-    path("place_schedule/<str:id>",views.place_schedule,name = "place_schedule")
+    path("schedule/<str:id>",views.place_schedule,name = "schedule")
 ]
