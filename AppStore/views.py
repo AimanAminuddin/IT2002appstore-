@@ -300,14 +300,6 @@ def place_booking(request):
             # end date in between start and end date 
             cursor.execute("SELECT start_date,end_date FROM bookings WHERE address=%s",address)
             schedule = cursor.fetchall()
-            if place is not None: 
-                for booking in schedule:
-                    # convert to datetime format and make comparison between
-                    continue 
-            
-            else:
-                status = "Place does not exists!"
-            
             
             if user_id is None or real_password is None: 
                 status = "Invalid Username or Password!"
@@ -315,8 +307,22 @@ def place_booking(request):
             elif d1 > d2: 
                 status = "Start Date cannot be later then End Date!"
             
-            elif d1 == d2: 
-                status = "There is a clash in booking!"
+            elif place is None:
+                status = "Place does not Exists!"
+            
+            elif place is not None:
+                for booking in schedule:
+                    # convert to datetime format and make comparison between
+                    b1 = booking[0].split("-")
+                    b2 = booking[1].split("-")
+                    b1 = datetime.datetime(int(b1[2]),int(b1[1]),int(b1[0]))
+                    b2 = datetime.datetime(int(b2[2]),int(b2[1]),int(b2[0]))
+                    
+                    if (b1 <= d1 and d1 <= b2) or (b1 <= d2 and d2 <= b2):
+                        status = "Clash in booking!"
+                        break 
+                    else:
+                        continue 
             
             else:
                 # insert new booking into booking table 
