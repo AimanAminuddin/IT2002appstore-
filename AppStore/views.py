@@ -310,7 +310,7 @@ def place_booking(request):
             elif place is None:
                 status = "Place does not Exists!"
             
-            elif place is not None:
+            else:
                 for booking in schedule:
                     # convert to datetime format and make comparison between
                     b1 = booking[0].split("-")
@@ -324,13 +324,16 @@ def place_booking(request):
                     else:
                         continue 
             
-            else:
+            
+            if status != "":
                 # insert new booking into booking table 
                 return HttpResponseRedirect(reverse("place"))
+            
+            else:
+                context['status'] = status 
+                return render(request,"booking.html",context)
         
-        context['status'] = status 
-        return render(request,"booking.html",context)
     else:
-        # error in booking 
+        # no booking was made (refresh page again)
         context['status'] = status 
         return render(request,"booking.html",context)
