@@ -292,8 +292,8 @@ def place_booking(request):
             # check if  end date >= start date
             start = start_date.split("-")
             end = end_date.split("-")
-            d1 = datetime.datetime(int(start[0]),int(start[1]),int(start[2]))
-            d2 = datetime.datetime(int(end[0]),int(end[1]),int(end[2]))
+            d1 = datetime.date(int(start[0]),int(start[1]),int(start[2]))
+            d2 = datetime.date(int(end[0]),int(end[1]),int(end[2]))
             
             # check if there are clashes 
             # just need to check if start date in between another start and end 
