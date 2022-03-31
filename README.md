@@ -1,8 +1,5 @@
-# AppStore
+# AirBnb App 
 
-Repository for the AppStore application with Django and Heroku with Raw SQL.
+Repository for the IT2002 3 tier Project: AirBnb App .
 
-See the example here: https://app-store-it2002.herokuapp.com/.
-
-## Contact
-If you have any issues, contact Remmy Zen (remmy@u.nus.edu) or post a question in Luminus forum.
+Our website is here: https://airbnbappit2002.herokuapp.com/.
