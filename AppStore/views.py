@@ -327,6 +327,13 @@ def place_booking(request):
             
             if status != "":
                 # insert new booking into booking table 
+                # create booking id 
+                cursor.execute("SELECT booking_id FROM bookings ORDER BY booking_id DESC LIMIT = 1")
+                booking_id = cursor.fetchone()
+                temp = int(booking_id) + 1 
+                str1 = start[2] + "/" + start[1] + "/" + start[0] 
+                str2 = end[2] + "/" + end[1] + "/" + end[0] 
+                cursor.execute("INSERT INTO users bookings (%s, %s, %s,%s,%s)",[temp,user_id,address,str1,str2])
                 return HttpResponseRedirect(reverse("place"))
             
             else:
