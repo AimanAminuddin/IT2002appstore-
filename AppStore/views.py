@@ -325,7 +325,7 @@ def place_booking(request):
                         continue 
             
             
-            if status != "":
+            if status == "":
                 # insert new booking into booking table 
                 # create booking id 
                 cursor.execute("SELECT booking_id FROM bookings ORDER BY booking_id DESC LIMIT 1")
