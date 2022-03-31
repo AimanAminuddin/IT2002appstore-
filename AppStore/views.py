@@ -298,7 +298,7 @@ def place_booking(request):
             # check if there are clashes 
             # just need to check if start date in between another start and end 
             # end date in between start and end date 
-            cursor.execute("SELECT start_date,end_date FROM bookings WHERE address=%s",[address])
+            cursor.execute("SELECT start_date,end_date FROM bookings WHERE place_id=%s",[address])
             schedule = cursor.fetchall()
             
             if user_id is None or real_password is None: 
