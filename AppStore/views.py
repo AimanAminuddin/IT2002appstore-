@@ -286,7 +286,7 @@ def place_booking(request):
             real_password = cursor.fetchone()
             
             # check if place exists 
-            cursor.execute("SELECT place_id FROM place WHERE place_id =%s",[address])
+            cursor.execute("SELECT address FROM place WHERE address =%s",[address])
             place = cursor.fetchone()
             
             # check if  end date >= start date
