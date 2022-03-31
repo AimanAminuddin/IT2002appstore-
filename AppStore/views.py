@@ -331,7 +331,7 @@ def place_booking(request):
                 cursor.execute("SELECT booking_id FROM bookings ORDER BY booking_id DESC LIMIT = 1")
                 booking_id = cursor.fetchone()
                 temp = int(booking_id) + 1 
-                cursor.execute("INSERT INTO users bookings (%s, %s, %s,%s,%s)",[temp,user_id,address,start_date,end_date])
+                cursor.execute("INSERT INTO users bookings (%s, %s, %s,%s,%s)",[temp,username,address,start_date,end_date])
                 return HttpResponseRedirect(reverse("place"))
             
             else:
