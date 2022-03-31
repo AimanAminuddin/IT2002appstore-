@@ -275,9 +275,9 @@ def place_booking(request):
         
         username = request.POST.get("username")
         password = request.POST.get("password")
+        address = request.POST.get("place")
         start_date = request.POST.get("start_date")
         end_date = request.POST.get("end_date")
-        address = request.POST.get("place")
         with connection.cursor() as cursor:
             # check if user or password invalid 
             cursor.execute("SELECT user_id FROM users WHERE user_id =%s",username)
