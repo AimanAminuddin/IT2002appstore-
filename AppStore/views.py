@@ -292,8 +292,8 @@ def place_booking(request):
             # check if  end date >= start date
             start = start_date.split("-")
             end = end_date.split("-")
-            d1 = datetime.datetime(int(start[2]),int(start[1]),int(start[0]))
-            d2 = datetime.datetime(int(end[2]),int(end[1]),int(end[0]))
+            d1 = datetime.datetime(int(start[0]),int(start[1]),int(start[2]))
+            d2 = datetime.datetime(int(end[0]),int(end[1]),int(end[2]))
             
             # check if there are clashes 
             # just need to check if start date in between another start and end 
@@ -316,10 +316,9 @@ def place_booking(request):
                     
                     b1 = booking[0].split("-")
                     b2 = booking[1].split("-")
-                    print(b1)
-                    print(b2)
-                    b1 = datetime.datetime(int(b1[2]),int(b1[1]),int(b1[0]))
-                    b2 = datetime.datetime(int(b2[2]),int(b2[1]),int(b2[0]))
+                    
+                    b1 = datetime.datetime(int(b1[0]),int(b1[1]),int(b1[2]))
+                    b2 = datetime.datetime(int(b2[0]),int(b2[1]),int(b2[2]))
                     
                     if (b1 <= d1 and d1 <= b2) or (b1 <= d2 and d2 <= b2):
                         status = "Clash in booking!"
@@ -334,9 +333,7 @@ def place_booking(request):
                 cursor.execute("SELECT booking_id FROM bookings ORDER BY booking_id DESC LIMIT = 1")
                 booking_id = cursor.fetchone()
                 temp = int(booking_id) + 1 
-                str1 = start[2] + "/" + start[1] + "/" + start[0] 
-                str2 = end[2] + "/" + end[1] + "/" + end[0] 
-                cursor.execute("INSERT INTO users bookings (%s, %s, %s,%s,%s)",[temp,user_id,address,str1,str2])
+                cursor.execute("INSERT INTO users bookings (%s, %s, %s,%s,%s)",[temp,user_id,address,start_date,end_date])
                 return HttpResponseRedirect(reverse("place"))
             
             else:
