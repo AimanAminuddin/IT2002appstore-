@@ -313,8 +313,11 @@ def place_booking(request):
             else:
                 for booking in schedule:
                     # convert to datetime format and make comparison between
+                    
                     b1 = booking[0].split("-")
                     b2 = booking[1].split("-")
+                    print(b1)
+                    print(b2)
                     b1 = datetime.datetime(int(b1[2]),int(b1[1]),int(b1[0]))
                     b2 = datetime.datetime(int(b2[2]),int(b2[1]),int(b2[0]))
                     
