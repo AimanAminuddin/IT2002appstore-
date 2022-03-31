@@ -280,13 +280,13 @@ def place_booking(request):
         end_date = request.POST.get("end_date")
         with connection.cursor() as cursor:
             # check if user or password invalid 
-            cursor.execute("SELECT user_id FROM users WHERE user_id =%s",username)
+            cursor.execute("SELECT user_id FROM users WHERE user_id =%s",[username])
             user_id = cursor.fetchone()
-            cursor.execute("SELECT password FROM users WHERE user_id =%s",password)
+            cursor.execute("SELECT password FROM users WHERE user_id =%s",[password])
             real_password = cursor.fetchone()
             
             # check if place exists 
-            cursor.execute("SELECT address FROM place WHERE address =%s",address)
+            cursor.execute("SELECT address FROM place WHERE address =%s",[address])
             place = cursor.fetchone()
             
             # check if  end date >= start date
@@ -298,7 +298,7 @@ def place_booking(request):
             # check if there are clashes 
             # just need to check if start date in between another start and end 
             # end date in between start and end date 
-            cursor.execute("SELECT start_date,end_date FROM bookings WHERE address=%s",address)
+            cursor.execute("SELECT start_date,end_date FROM bookings WHERE address=%s",[address])
             schedule = cursor.fetchall()
             
             if user_id is None or real_password is None: 
