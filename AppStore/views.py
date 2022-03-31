@@ -333,7 +333,9 @@ def place_booking(request):
                 booking_id = booking_id[0]
                 temp = str(int(booking_id) + 1) 
                 cursor.execute("INSERT INTO bookings VALUES(%s, %s, %s,%s,%s)",[temp,username,address,start_date,end_date])
-                return HttpResponseRedirect(reverse("place"))
+                status = "Booking is successful!"
+                context['status'] = status 
+                return render(request, "booking.html", context)
             
             else:
                 context['status'] = status 
