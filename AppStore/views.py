@@ -290,8 +290,8 @@ def place_booking(request):
             place = cursor.fetchone()
             
             # check if  end date >= start date
-            start = start_date.split("/")
-            end = end_date.split("/")
+            start = start_date.split("-")
+            end = end_date.split("-")
             d1 = datetime.datetime(int(start[2]),int(start[1]),int(start[0]))
             d2 = datetime.datetime(int(end[2]),int(end[1]),int(end[0]))
             
