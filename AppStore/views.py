@@ -314,11 +314,9 @@ def place_booking(request):
                 for booking in schedule:
                     # convert to datetime format and make comparison between
                     
-                    b1 = booking[0].split("-")
-                    b2 = booking[1].split("-")
+                    b1 = booking[0]
+                    b2 = booking[1]
                     
-                    b1 = datetime.datetime(int(b1[0]),int(b1[1]),int(b1[2]))
-                    b2 = datetime.datetime(int(b2[0]),int(b2[1]),int(b2[2]))
                     
                     if (b1 <= d1 and d1 <= b2) or (b1 <= d2 and d2 <= b2):
                         status = "Clash in booking!"
