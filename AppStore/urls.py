@@ -36,5 +36,6 @@ urlpatterns = [
     path("reviews/<str:id>",views.print_reviews,name = "place_review"),
     path("bestplaces",views.print_best_places,name = "bestplaces"),
     path("schedule/<str:id>",views.place_schedule,name = "schedule"),
-    path("booking",views.place_booking,name = "booking")
+    path("booking",views.place_booking,name = "booking"),
+    path('review',views.leave_a_review,name = "review")
 ]

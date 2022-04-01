@@ -345,7 +345,7 @@ def place_booking(request):
         # no booking was made (refresh page again)
         context['status'] = status 
         return render(request,"booking.html",context)
-'''
+
 def leave_a_review(request):
     booking_id = request.POST.get('booking_id')
     rating = request.POST.get('rating')
@@ -370,5 +370,10 @@ def leave_a_review(request):
             else:
                 # INSERT INTO review table 
                 cursor.execute("INSERT INTO review VALUES(%s,%s,%s)",[booking_id,rating,review])
-                return 5 
-'''
+                status = "You successfully reviewed this place! Thank you for your time!"
+                context['status'] = status 
+                return render(request,'review',context)
+        
+    context['status'] = status 
+        
+    return render(request, 'review',context)
