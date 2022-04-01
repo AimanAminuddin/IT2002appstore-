@@ -1,0 +1,22 @@
+<html>
+<body>
+    <h2>Leave a Review</h2>
+    <a href="/places"><button>Back to Available Places</button></a>
+
+    <p style="color:red">{{ status|safe }}</p>
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+        <div id="div_id_booking_id" class="control-group"> <label for="id_bookng_id" class="control-label requiredField">
+        Booking ID<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="booking_id" maxlength="64" class="textinput textInput" required="" id="id_booking_id"> </div> </div> <div id="div_id_rating" class="control-group"> <label for="id_rating" class="control-label requiredField">
+        Rating<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="rating" min = "1" max = "5" maxlength="64" class="textinput textInput" required="" id="id_email"> </div> </div> <div id="div_id_review" class="control-group"> <label for="id_review" class="control-label requiredField">
+        Review<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="review" maxlength="64" class="textinput textInput" required="" id="review"> </div> </div> 
+        
+
+        <br>
+        <button type="submit" value="Add">Submit Review</button>
+    </form>
+</body>
+</html>
