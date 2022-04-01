@@ -372,8 +372,8 @@ def leave_a_review(request):
                 cursor.execute("INSERT INTO review VALUES(%s,%s,%s)",[id,rating,review])
                 status = "You successfully reviewed this place! Thank you for your time!"
                 context['status'] = status 
-                return render(request,'review',context)
+                return render(request,'review.html',context)
         
     context['status'] = status 
         
-    return render(request, 'review',context)
+    return render(request, 'review.html',context)
