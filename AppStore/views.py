@@ -347,14 +347,14 @@ def place_booking(request):
         return render(request,"booking.html",context)
 
 def leave_a_review(request):
-    booking_id = request.POST.get('booking_id')
+    id = request.POST.get('booking_id')
     rating = request.POST.get('rating')
     review = request.POST.get('review')
     context = {}
     status = ""
     
     with connection.cursor() as cursor:
-        cursor.execute("SELECT booking_id FROM bookings WHERE booking_id =%s",booking_id)
+        cursor.execute("SELECT booking_id FROM bookings WHERE booking_id =%s",[id])
         book = cursor.fetchone()
         
         if book is None:
@@ -362,14 +362,14 @@ def leave_a_review(request):
             status = 'Booking does not exist!'
         else:
             # check if user has already made a review 
-            cursor.execute("SELECT * FROM reviews WHERE booking_id = %s",booking_id)
+            cursor.execute("SELECT booking_id FROM reviews WHERE booking_id = %s",[id])
             critic = cursor.fetchone()
             if critic is not None:
                 # already made booking_id
                 status = 'You already have reviewed this place!'
             else:
                 # INSERT INTO review table 
-                cursor.execute("INSERT INTO review VALUES(%s,%s,%s)",[booking_id,rating,review])
+                cursor.execute("INSERT INTO review VALUES(%s,%s,%s)",[id,rating,review])
                 status = "You successfully reviewed this place! Thank you for your time!"
                 context['status'] = status 
                 return render(request,'review',context)
