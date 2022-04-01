@@ -1,5 +1,54 @@
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("https://img.wallpapersafari.com/desktop/1680/1050/38/33/Xvi6Gw.jpg");
+
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 100%;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+
+
+
+
+/* Set a style for the submit button */
+
+
+.btn:hover {
+  opacity: 20;
+}
+</style>
 <body>
+
+<div class="bg-img">
     <h2>Booking Form</h2>
     <a href="/places">Back to Places</a>
 
@@ -9,16 +58,11 @@
         <!-- Security token by Django -->
         {% csrf_token %}
         <!-- form -->
-        <div id="div_id_user_name" class="control-group"> <label for="id_user_name" class="control-label requiredField">
-        Username<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="username" maxlength="64" class="textinput textInput" required="" id="id_user_name"> </div> </div> <div id="div_id_place" class="control-group"> <label for="id_place" class="control-label requiredField"></div> <div id="div_id_password" class="control-group"> <label for="id_password" class="control-label requiredField">
-        Password<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="password" maxlength="64" class="textinput textInput" required="" id="id_password"> </div> </div> 
-        Place<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="place" maxlength="64" class="textinput textInput" required="" id="id_place"> </div> </div> <div id="div_id_start_date" class="control-group"> <label for="id_start_date" class="control-label requiredField">
-        Start Date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="date" name="start_date" maxlength="64" class="textinput textInput" required="" id="id_start_date"> </div> </div> <div id="div_id_end_date" class="control-group"> <label for="id_end_date" class="control-label requiredField">
-        End Date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="date" name="end_date" maxlength="64" class="textinput textInput" required="" id="id_end_date"> </div>
-        
-
+<div id="div_id_user_name" class="control-group"> <label for="id_user_name" class="control-label requiredField"> Username<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="username" maxlength="64" class="textinput textInput" required="" id="id_user_name"> </div> </div> <div id="div_id_place" class="control-group"> <label for="id_place" class="control-label requiredField"></div> <div id="div_id_password" class="control-group"> <label for="id_password" class="control-label requiredField">
+        Password<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="password" maxlength="64" class="textinput textInput" required="" id="id_password"></div> Place<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="place" maxlength="64" class="textinput textInput" required="" id="id_place"></div> <div id="div_id_start_date" class="control-group"> <label for="id_start_date" class="control-label requiredField"></div>Start Date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="date" name="start_date" maxlength="64" class="textinput textInput" required="" id="id_start_date"> </div><div id="div_id_end_date" class="control-group"> <label for="id_end_date" class="control-label requiredField"></div>
+        End Date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="date" name="end_date" maxlength="64" class="textinput textInput" required="" id="id_end_date"> </div></div>
         <br>
-        <button type="submit" value="Add">Book Now</button>
+        <button type="submit" value="Add">Book Now</button></div>
     </form>
 </body>
 </html>
