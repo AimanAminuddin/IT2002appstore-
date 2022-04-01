@@ -345,3 +345,19 @@ def place_booking(request):
         # no booking was made (refresh page again)
         context['status'] = status 
         return render(request,"booking.html",context)
+
+def leave_a_review(request):
+    booking_id = request.POST.get('booking_id')
+    rating = request.POST.get('rating')
+    review = request.POST.get('review')
+    context = {}
+    status = ""
+    
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM bookings WHERE booking_id =%s",booking_id)
+        book = cursor.fetchone()
+        
+        if book is None:
+            # no such booking was made 
+            status = 'Booking does not exist!'
+    return 1 
