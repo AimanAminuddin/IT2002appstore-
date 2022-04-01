@@ -370,7 +370,7 @@ def leave_a_review(request):
                     status = 'You already have reviewed this place!'
                 else:
                 # INSERT INTO review table 
-                    cursor.execute("INSERT INTO review VALUES(%s,%s,%s)",[id,rating,review])
+                    cursor.execute("INSERT INTO reviews VALUES(%s,%s,%s)",[id,rating,review])
                     status = "You successfully reviewed this place! Thank you for your time!"
                     context['status'] = status 
                     return render(request,'review.html',context)
