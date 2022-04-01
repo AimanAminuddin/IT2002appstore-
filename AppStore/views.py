@@ -354,7 +354,7 @@ def leave_a_review(request):
     status = ""
     
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM bookings WHERE booking_id =%s",booking_id)
+        cursor.execute("SELECT booking_id FROM bookings WHERE booking_id =%s",booking_id)
         book = cursor.fetchone()
         
         if book is None:
