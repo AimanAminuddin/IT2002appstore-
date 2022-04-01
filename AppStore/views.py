@@ -360,4 +360,14 @@ def leave_a_review(request):
         if book is None:
             # no such booking was made 
             status = 'Booking does not exist!'
+        else:
+            # check if user has already made a review 
+            cursor.execute("SELECT * FROM reviews WHERE booking_id = %s",booking_id)
+            critic = cursor.fetchone()
+            if critic is not None:
+                # already made booking_id
+                status = 'You already have reviewed this place!'
+            else:
+                # INSERT INTO review table 
+                
     return 1 
