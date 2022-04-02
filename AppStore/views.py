@@ -419,7 +419,7 @@ def host_index(request):
         FROM hosts h,place p
         WHERE h.host_id = p.host_id AND h.host_id 
         NOT IN (SELECT p.host_id FROM bookings b,place p WHERE b.place_id = p.address)
-        ORDER BY revenue DESC;
+        ORDER BY revenue DESC
         """
         hosts = cursor.execute(query)
     
