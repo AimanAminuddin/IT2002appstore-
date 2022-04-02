@@ -87,4 +87,5 @@ INSERT INTO place(host_id,address,city_id,price_per_night,country_id) VALUES ('k
 INSERT INTO place(host_id,address,city_id,price_per_night,country_id) VALUES ('fhearsey7f','982 Artisan Terrace','San Antonio',173.25,'United States');
 INSERT INTO place(host_id,address,city_id,price_per_night,country_id) VALUES ('rmackilpatrick3i','30948 Kingsford Center','Lawrenceville',164.38,'United States');
 INSERT INTO place(host_id,address,city_id,price_per_night,country_id) VALUES ('fkenway5k','9 Goodland Avenue','New York City',159.16,'United States');
+INSERT INTO place(host_id,address,city_id,price_per_night,country_id) VALUES ('dblaxill8c','81 Hammerstone Vlg','New York City',100,'United States');
 

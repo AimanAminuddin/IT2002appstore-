@@ -380,3 +380,49 @@ def leave_a_review(request):
     else:
         context['status'] = status 
         return render(request, 'review.html',context)
+    
+'''
+
+def index(request):
+    """Shows the main page"""
+
+    ## Delete customer
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM users WHERE user_id = %s", [request.POST['id']])
+
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM users ORDER BY user_id")
+        users = cursor.fetchall()
+
+    result_dict = {'records': users}
+
+    return render(request,'index.html',result_dict)
+'''
+def host_index(request):
+    # Delete host index
+    if request.POST:
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute('DELETE FROM hosts WHERE user_id =%s',[request.POST['id']])
+    
+    ## Use raw query to get all objects in the database 
+    with connection.cursor() as cursor:
+        query = """SELECT h.host_id,p.address,p.city_id,p.country_id,SUM(p.price_per_night) AS revenue
+        FROM hosts h,place p,bookings b
+        WHERE h.host_id = p.host_id AND p.address = b.place_id
+        GROUP BY h.host_id,p.address,p.city_id,p.country_id 
+        UNION
+        SELECT h.host_id,p.address,p.city_id,p.country_id,0 AS revenue 
+        FROM hosts h,place p
+        WHERE h.host_id = p.host_id AND h.host_id 
+        NOT IN (SELECT p.host_id FROM bookings b,place p WHERE b.place_id = p.address)
+        ORDER BY revenue DESC;
+        """
+        hosts = cursor.execute(query)
+    
+    result_dict ={'records':hosts}
+    
+    return render(request,'hosts.html',result_dict)
