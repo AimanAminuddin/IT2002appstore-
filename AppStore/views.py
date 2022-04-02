@@ -381,26 +381,7 @@ def leave_a_review(request):
         context['status'] = status 
         return render(request, 'review.html',context)
     
-'''
 
-def index(request):
-    """Shows the main page"""
-
-    ## Delete customer
-    if request.POST:
-        if request.POST['action'] == 'delete':
-            with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM users WHERE user_id = %s", [request.POST['id']])
-
-    ## Use raw query to get all objects
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM users ORDER BY user_id")
-        users = cursor.fetchall()
-
-    result_dict = {'records': users}
-
-    return render(request,'index.html',result_dict)
-'''
 def host_index(request):
     # Delete host index
     if request.POST:
@@ -426,3 +407,6 @@ def host_index(request):
     result_dict ={'records':hosts}
     
     return render(request,'hosts.html',result_dict)
+
+def host_view(request,id):
+    return 1
