@@ -28,7 +28,7 @@
                 <a href="host_view/{{host.0}}"><button>View</button></a> | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
-                <input type="hidden" name="id" value="{{user.0}}"/>
+                <input type="hidden" name="id" value="{{host.0}}"/>
                 <button onclick="return confirm('Are you sure you want to delete {{host.0}}?');" type="submit" name="action" value="delete">Delete</button> 
               </form></td>
         </tr>
