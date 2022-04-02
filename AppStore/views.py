@@ -408,3 +408,25 @@ def host_index(request):
     result_dict ={'records':host}
     
     return render(request,'hosts.html',result_dict)
+
+
+def host_view(request,id):
+    with connection.cursor() as cursor:
+        query = """SELECT * FROM 
+(SELECT h.host_id,p.address,p.city_id,p.country_id,SUM(p.price_per_night) AS revenue
+        FROM hosts h,place p,bookings b
+        WHERE h.host_id = p.host_id AND p.address = b.place_id
+        GROUP BY h.host_id,p.address,p.city_id,p.country_id 
+        UNION
+        SELECT h.host_id,p.address,p.city_id,p.country_id,0 AS revenue 
+        FROM hosts h,place p
+        WHERE h.host_id = p.host_id AND h.host_id 
+        NOT IN (SELECT p.host_id FROM bookings b,place p WHERE b.place_id = p.address)
+        ORDER BY revenue DESC) AS temp 
+        WHERE temp.host_id = %s
+        """
+        cursor.execute(query,[id])
+        host = cursor.fetchone()
+        result_dict = {'host':host}
+    
+    return render(request, 'host_view.html',result_dict) 
