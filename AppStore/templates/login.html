@@ -4,11 +4,56 @@
 
 {% load crispy_forms_tags %}
 <html>
+    <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-<head>
-  <title>IT2002</title>
-</head>
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("https://wallpaperforu.com/wp-content/uploads/2020/07/pixel-art-wallpaper-200722200326321920x1080.jpg");
+
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 100%;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+
+
+
+
+/* Set a style for the submit button */
+
+
+.btn:hover {
+  opacity: 20;
+}
+</style>
+    </head>
 <!--Login--> 
+<div class="bg-img">
 <div class="container py-5">
   <h1>Login</h1>
   <form method="POST">
