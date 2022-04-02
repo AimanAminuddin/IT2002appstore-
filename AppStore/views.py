@@ -402,8 +402,9 @@ def host_index(request):
         NOT IN (SELECT p.host_id FROM bookings b,place p WHERE b.place_id = p.address)
         ORDER BY revenue DESC
         """
-        hosts = cursor.execute(query)
+        cursor.execute(query)
+        host = cursor.fetchall()
     
-    result_dict ={'records':hosts}
+    result_dict ={'records':host}
     
     return render(request,'hosts.html',result_dict)
