@@ -1,0 +1,37 @@
+{% load static %}
+<html>
+
+<head>
+    <title>IT2002</title>
+</head>
+<body>
+    <h2>AirBnb Hosts</h2>
+    <a href="add">New Host</a> <br/>
+    <a href="logout"><button>Back to Users Table</button></a> 
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Revenue</th>
+            <th>Action</th>
+        </thead>
+        {% for host in records %}
+        <tr>
+            <td> {{host.0}} </td>
+            <td> {{host.1}} </td>
+            <td> {{host.2}} </td>
+            <td>
+                <a href="view/{{host.0}}"><button>View</button></a> | 
+                <a href="edit/{{host.0}}"><button>Edit</button></a>
+                | 
+                <form method="POST" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{user.0}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{host.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+              </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
