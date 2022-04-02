@@ -407,6 +407,3 @@ def host_index(request):
     result_dict ={'records':hosts}
     
     return render(request,'hosts.html',result_dict)
-
-def host_view(request,id):
-    return 1
