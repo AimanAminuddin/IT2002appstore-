@@ -39,5 +39,6 @@ urlpatterns = [
     path("booking",views.place_booking,name = "booking"),
     path('review',views.leave_a_review,name = "review"),
     path('hosts',views.host_index,name = 'hosts'),
-    path('host_view/<str:id>',views.host_view,name = 'host_view')
+    path('host_view/<str:id>',views.host_view,name = 'host_view'),
+    path('addhosts',views.add_hosts,name = 'add_hosts')
 ]

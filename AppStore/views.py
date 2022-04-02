@@ -440,3 +440,63 @@ def host_view(request,id):
         result_dict = {'host':host}
     
     return render(request, 'host_view.html',result_dict) 
+
+'''
+def add(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
+            customer = cursor.fetchone()
+            ## No customer with same id
+            if customer == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
+                        , [request.POST['user_id'], request.POST['email'], request.POST['password']
+                            ])
+                return redirect('login')    
+            else:
+                status = 'USER with ID %s already exists' % (request.POST['user_id'])
+
+
+    context['status'] = status
+ 
+    return render(request, "add.html", context)
+'''
+
+def add_hosts(request):
+    context = {}
+    status = ''
+    
+    if request.POST:
+        with connection.cursor() as cursor:
+            user = request.POST.get('user_id')
+            cursor.execute("SELECT * FROM users WHERE user_id = %s",[user])
+            user_id = cursor.fetchone()
+            
+            if user_id is None:
+                status = 'You can only add hosts from current users'
+            else:
+                # check if hosts already exists in the database
+                cursor.execute("SELECT * FROM hosts WHERE host_id=%s",[user])
+                host_id = cursor.fetchone()
+                if host_id is not None:
+                    status = 'User is already a host!'
+                else:
+                    status = 'New Host added successfully!'
+                    context['status'] = status 
+                    # insert into host table  
+                    cursor.execute("INSERT INTO hosts VALUES(%s)",[host_id[0]])
+                    return render(request, 'addhost.html',context)
+            
+            context['status'] = status 
+            
+            return render(request, 'addhost.html',context)
+    
+    else:
+        return render(request, 'addhost.html',context)
