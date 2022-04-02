@@ -23,8 +23,6 @@
             <td> {{host.2}} </td>
             <td>
                 <a href="view/{{host.0}}"><button>View</button></a> | 
-                <a href="edit/{{host.0}}"><button>Edit</button></a>
-                | 
                 <form method="POST" style="display: inline;">
                 {% csrf_token %}
                 <input type="hidden" name="id" value="{{user.0}}"/>
