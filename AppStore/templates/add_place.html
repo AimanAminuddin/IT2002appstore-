@@ -13,7 +13,7 @@ body, html {
 
 .bg-img {
   /* The image used */
-  background-image: url("https://www.teahub.io/photos/full/361-3611215_pixel-art.jpg");
+  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/faecba06-78cb-4371-8f56-aadc6be36657/de39ymx-e161d28a-e2d4-4e5c-bdcf-7d69ca073799.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2ZhZWNiYTA2LTc4Y2ItNDM3MS04ZjU2LWFhZGM2YmUzNjY1N1wvZGUzOXlteC1lMTYxZDI4YS1lMmQ0LTRlNWMtYmRjZi03ZDY5Y2EwNzM3OTkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.IpVxnM2Rm_EAZYqYe9l1XSFuqnSCpeHlCswzZXHhqn0");
 
   min-height: 100%;
 
@@ -49,7 +49,7 @@ body, html {
     </head>
 <body>
     <div class="bg-img">
-    <h2>Registration Form</h2>
+    <h2>New Rental Place Form</h2>
     <a href="hosts"><button>Back to hosts</button></a>
 
     <p style="color:red">{{ status|safe }}</p>
@@ -59,10 +59,12 @@ body, html {
         <!-- Security token by Django -->
         {% csrf_token %}
         <!-- form -->
-        <div id="div_id_user_name" class="control-group"> <label for="id_user_name" class="control-label requiredField">
-        Username<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="user_id" maxlength="64" class="textinput textInput" required="" id="id_user_name"> </div> </div> <div id="div_id_email" class="control-group"> <label for="id_email" class="control-label requiredField">
-        Email<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="email" maxlength="64" class="textinput textInput" required="" id="id_email"> </div> </div> <div id="div_id_password" class="control-group"> <label for="id_password" class="control-label requiredField">
-        Password<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="password" maxlength="64" class="textinput textInput" required="" id="id_password"> </div> </div> 
+        <div id="div_id_host_id" class="control-group"> <label for="id_host_id" class="control-label requiredField">
+        Host Username<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="host_id" maxlength="64" class="textinput textInput" required="" id="id_host_id"> </div> </div> <div id="div_id_address" class="control-group"> <label for="id_address" class="control-label requiredField">
+        Address<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="email" maxlength="64" class="textinput textInput" required="" id="id_address"> </div> </div> <div id="div_id_city" class="control-group"> <label for="id_city" class="control-label requiredField">
+        City<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="city" maxlength="64" class="textinput textInput" required="" id="id_city"> </div> </div> <label for="id_country" class="control-label requiredField">
+        Country<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="city" maxlength="64" class="textinput textInput" required="" id="id_country"> </div><label for="id_country" class="control-label requiredField">
+        Price Per Night<span class="asteriskField">*</span> </label> <div class="controls"> <input type="number" name="price" min = "50" step = "0.01" maxlength="64" class="textinput textInput" required="" id="id_country"> </div> 
         
 
         <br>
