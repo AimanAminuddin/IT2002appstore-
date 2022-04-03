@@ -514,8 +514,36 @@ def add_places(request):
         country = request.POST.get('country')
         price_per_night = request.POST.get('price_per_night')
         
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM hosts WHERE host_id =%s",[host])
+            host_id = cursor.fetchone()
+            cursor.execute("SELECT * FROM countries WHERE name=%s",[country])
+            country_id = cursor.fetchone()
+            cursor.execute("SELECT * FROM cities WHERE name =%s AND country=%s",[city,country])
+            city_id = cursor.fetchone()
+            if host_id is None:
+                # user does not exists 
+                status = "Host does not exists!"
+            
+            elif country_id is None:
+                status = "AirBnb is not available in this country"
+            
+            elif city_id is None:
+                # AirBnb available in this country but no user in this city 
+                # INSERT city into city table before adding address to place due to 
+                # Foreign Key 
+                cursor.execute("INSERT INTO cities(name,country) VALUES(city,country)")
+                cursor.execute("INSERT INTO place(host_id,address,city_id,price_per_night,country_id) VALUES (%s,%s,%s,%s,%s)",[host,place,city,price_per_night,country_id])
+                
+                status = "New place added into database!"
+                context['status'] = status 
+                
+                return render(request,"add_place.html",context)
         
-        return 1 
+        
+        context['status'] = status 
+        
+        return render(request,"add_places.html",context)
     
     else:
         return render(request,'add_places.html',context)
