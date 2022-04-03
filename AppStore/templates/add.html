@@ -1,10 +1,60 @@
 <html>
+    <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("https://www.teahub.io/photos/full/361-3611215_pixel-art.jpg");
+
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 100%;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+
+
+
+
+/* Set a style for the submit button */
+
+
+.btn:hover {
+  opacity: 20;
+}
+</style>
+    </head>
 <body>
+    <div class="bg-img">
     <h2>Registration Form</h2>
-    <a href="mainpage">Back to home</a>
+    <a href="mainpage"><button>Back to home</button></a>
 
     <p style="color:red">{{ status|safe }}</p>
     <!-- Create a Form -->
+
     <form method="POST">
         <!-- Security token by Django -->
         {% csrf_token %}
@@ -16,8 +66,7 @@
         
 
         <br>
-        <button type="submit" value="Add">Register</button>
+        <button type="submit" value="Add">Create New Account</button>
     </form>
 </body>
 </html>
-
