@@ -1,33 +1,68 @@
-{% load static %}
 <html>
-    <h2>Best Places in Each City</h2>
-<body>
-    <p style = "background-image:url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3da7d31f-8479-4d32-8a2e-24d012263a77/de3vi9c-d65bcab9-3dbf-4c9a-97f8-fb5ea96f94af.png/v1/fill/w_1280,h_800,q_80,strp/pixel_art_background_practice2_by_raisinbreadx_de3vi9c-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODAwIiwicGF0aCI6IlwvZlwvM2RhN2QzMWYtODQ3OS00ZDMyLThhMmUtMjRkMDEyMjYzYTc3XC9kZTN2aTljLWQ2NWJjYWI5LTNkYmYtNGM5YS05N2Y4LWZiNWVhOTZmOTRhZi5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.A4NUyJzbBU53Xk0nAxkGceanW_29gws459-2svc9sAs)">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-<a href = "/places"><button>Back to Available Places</button></a>|<a href="/booking"><button>Booking</button></a>|<a href="/booking"><button>Booking</button></a>|<a href="logout"><button>Logout</button></a>|<a href = "/reviews"><button>Reviews</button></a>
-    <br/><br/>
-    <table border=1>
-        <thead>
-            <th>Address</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Average Rating</th>
-            <th>Action</th>
-        </thead>
-        {% for best_places in records %}
-        <tr>
-            <td> {{best_places.0}} </td>
-            <td> {{best_places.1}} </td>
-            <td> {{best_places.2}} </td>
-            <td>{{best_places.3}}</td>
-            <td>
-                <a href="place_view/{{best_places.0}}"><button>View</button></a> | 
-                <a href="reviews/{{best_places.0}}"><button>Check Reviews</button></a> |
-                <a href="schedule/{{best_place.1}}"><button>Schedule</button></a> 
-              </form></td>
-        </tr>
-        {% endfor %}
-    </table>
-</p>
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("https://img.wallpapersafari.com/desktop/1680/1050/38/33/Xvi6Gw.jpg");
+
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 100%;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+
+
+
+
+/* Set a style for the submit button */
+
+
+.btn:hover {
+  opacity: 20;
+}
+</style>
+<body>
+
+<div class="bg-img">
+    <h2>Booking Form</h2>
+    <a href="/places"><button>Back to Places</button></a>
+
+    <p style="color:red">{{ status|safe }}</p>
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        <!-- form -->
+<div id="div_id_user_name" class="control-group"> <label for="id_user_name" class="control-label requiredField"> Username<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="username" maxlength="64" class="textinput textInput" required="" id="id_user_name"> </div> </div> <div id="div_id_place" class="control-group"> <label for="id_place" class="control-label requiredField"></div> <div id="div_id_password" class="control-group"> <label for="id_password" class="control-label requiredField">
+        Password<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="password" maxlength="64" class="textinput textInput" required="" id="id_password"></div> Place<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="place" maxlength="64" class="textinput textInput" required="" id="id_place"></div> <div id="div_id_start_date" class="control-group"> <label for="id_start_date" class="control-label requiredField"></div>Start Date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="date" name="start_date" maxlength="64" class="textinput textInput" required="" id="id_start_date"> </div><div id="div_id_end_date" class="control-group"> <label for="id_end_date" class="control-label requiredField"></div>
+        End Date<span class="asteriskField">*</span> </label> <div class="controls"> <input type="date" name="end_date" maxlength="64" class="textinput textInput" required="" id="id_end_date"> </div></div>
+        <br>
+        <button type="submit" value="Add">Book Now</button></div>
+    </form>
 </body>
 </html>
