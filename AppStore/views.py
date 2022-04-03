@@ -502,3 +502,20 @@ def add_hosts(request):
     
     else:
         return render(request, 'addhost.html',context)
+
+
+def add_places(request):
+    context = {} 
+    status = ''
+    if request.POST:
+        host = request.POST.get('host')
+        place = request.POST.get('place')
+        city = request.POST.get('city')
+        country = request.POST.get('country')
+        price_per_night = request.POST.get('price_per_night')
+        
+        
+        return 1 
+    
+    else:
+        return render(request,'add_places.html',context)
