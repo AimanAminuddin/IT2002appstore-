@@ -387,7 +387,7 @@ def host_index(request):
     if request.POST:
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
-                cursor.execute('DELETE FROM hosts WHERE user_id =%s',[request.POST['id']])
+                cursor.execute('DELETE FROM hosts WHERE host_id =%s',[request.POST['id']])
     
     ## Use raw query to get all objects in the database 
     with connection.cursor() as cursor:
