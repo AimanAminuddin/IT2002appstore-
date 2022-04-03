@@ -520,6 +520,7 @@ def add_places(request):
             cursor.execute("SELECT * FROM countries WHERE name=%s",[country])
             country_id = cursor.fetchone()
             cursor.execute("SELECT * FROM cities WHERE name =%s AND country=%s",[city,country])
+            cursor.execute("SELECT * FROM place where address=%s",[place])
             city_id = cursor.fetchone()
             if host_id is None:
                 # user does not exists 
@@ -527,6 +528,9 @@ def add_places(request):
             
             elif country_id is None:
                 status = "AirBnb is not available in this country"
+                
+            elif place is not None:
+                status = "Place already exists!"
             
             elif city_id is None:
                 # AirBnb available in this country but no user in this city 
