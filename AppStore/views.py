@@ -547,7 +547,7 @@ def add_places(request):
         
         context['status'] = status 
         
-        return render(request,"add_places.html",context)
+        return render(request,"add_place.html",context)
     
     else:
-        return render(request,'add_places.html',context)
+        return render(request,'add_place.html',context)
