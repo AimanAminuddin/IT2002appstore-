@@ -536,8 +536,8 @@ def add_places(request):
                 # AirBnb available in this country but no user in this city 
                 # INSERT city into city table before adding address to place due to 
                 # Foreign Key 
-                cursor.execute("INSERT INTO cities(name,country) VALUES(city,country)")
-                cursor.execute("INSERT INTO place(host_id,address,city_id,price_per_night,country_id) VALUES (%s,%s,%s,%s,%s)",[host,place,city,price_per_night,country_id])
+                cursor.execute("INSERT INTO cities(name,country) VALUES(%s,%s)",[city,country])
+                cursor.execute("INSERT INTO place(host_id,address,city_id,price_per_night,country_id) VALUES (%s,%s,%s,%s,%s)",[host,place,city,price_per_night,country])
                 
                 status = "New place added into database!"
                 context['status'] = status 
