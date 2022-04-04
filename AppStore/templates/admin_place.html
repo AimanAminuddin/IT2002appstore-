@@ -30,7 +30,8 @@
                 {% csrf_token %}
                 <input type="hidden" name="address" value="{{place.1}}"/>
                 <button onclick="return confirm('Are you sure you want to delete {{place.1}}?');" type="submit" name="action" value="delete">Delete</button> 
-        </tr>
+                </form></td>
+            </tr>
         {% endfor %}
     </table>
 </p>
