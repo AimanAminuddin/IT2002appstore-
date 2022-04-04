@@ -508,7 +508,7 @@ def add_places(request):
     context = {} 
     status = ''
     if request.POST:
-        host = request.POST.get('host')
+        host = request.POST.get('host_id')
         place = request.POST.get('place')
         city = request.POST.get('city')
         country = request.POST.get('country')
