@@ -493,7 +493,7 @@ def add_hosts(request):
                     status = 'New Host added successfully!'
                     context['status'] = status 
                     # insert into host table  
-                    cursor.execute("INSERT INTO hosts VALUES(%s)",[host_id[0]])
+                    cursor.execute("INSERT INTO hosts VALUES(%s)",[user])
                     return render(request, 'addhost.html',context)
             
             context['status'] = status 
