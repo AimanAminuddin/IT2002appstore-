@@ -530,7 +530,7 @@ def admin_place_index(request):
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
                 address = request.POST.get('address')
-                cursor.execute("DELETE FROM place WHERE address=%s",[request.POST['id']])
+                cursor.execute("DELETE FROM place WHERE address=%s",[request.POST['address']])
         
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM place ORDER BY address")
