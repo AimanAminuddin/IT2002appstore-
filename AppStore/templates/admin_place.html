@@ -1,0 +1,36 @@
+
+{% load static %}
+<html>
+<h2>Places for Booking</h2>
+<body><p style = "background-image:url(https://i.pinimg.com/originals/2e/be/58/2ebe5877770bd173affcfa6e30b8e593.png"
+
+    <br/>
+    <a href = "/mainpage"><button>Back to User Table</button></a>
+    <br></br>
+    <table border=1>
+        <thead>
+            <th>Address</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Price Per Night</th>
+            <th>Action</th>
+        </thead>
+        {% for place in records %}
+        <tr>
+            <td> {{place.1}} </td>
+            <td> {{place.2}} </td>
+            <td> {{place.4}} </td>
+            <td>{{place.3}}</td>
+            <td>
+                <a href="place_view/{{place.1}}"><button>View</button></a> | 
+                <a href="reviews/{{place.1}}"><button>Check Reviews</button></a> | 
+                <a href="schedule/{{place.1}}"><button>Schedule</button></a> 
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{place.0}}"/>
+                <button onclick="return confirm('Are you sure you want to delete {{place.0}}?');" type="submit" name="action" value="delete">Delete</button> 
+        </tr>
+        {% endfor %}
+    </table>
+</p>
+</body>
+</html>
