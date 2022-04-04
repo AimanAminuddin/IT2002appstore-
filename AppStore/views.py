@@ -536,5 +536,5 @@ def admin_place_index(request):
         places = cursor.fetchall()
         result_dict = {'records':places}
             
-    return render(request,'admin_places.html',result_dict)
+    return render(request,'admin_place.html',result_dict)
     
