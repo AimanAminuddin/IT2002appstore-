@@ -547,4 +547,18 @@ def admin_place_view(request,id):
     
     result_dict = {'place':place}
     return render(request,'admin_place_view.html',result_dict)
+
+def admin_print_reviews(request,id):
+    # print all reviews of  a particular place 
+    with connection.cursor() as cursor:
+        query = """SELECT p.address,r.booking_id,r.review,r.rating 
+        FROM bookings b,reviews r,place p 
+        WHERE b.booking_id = r.booking_id AND b.place_id = p.address 
+        GROUP BY p.address,r.booking_id,r.review,r.rating 
+        HAVING p.address = %s
+        """
+        cursor.execute(query,[id])
+        review = cursor.fetchall()
+        result_dict = {'records':review}
+        return render(request,'admin_check_reviews.html',result_dict)
     

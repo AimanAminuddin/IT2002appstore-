@@ -1,0 +1,72 @@
+{% load static %}
+<html>
+    <head>
+    <h2>Reviews of the Place</h2>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("https://cdn.dribbble.com/users/1338391/screenshots/15339530/forest_landscape_wallpaper_background_flat_design_art_4x.jpg");
+
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 100%;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+
+
+
+
+/* Set a style for the submit button */
+
+
+.btn:hover {
+  opacity: 20;
+}
+</style>
+</head>
+<div class="bg-img">
+ <a href="/admin_place"><button>Back to Available Places</button></a>
+    <br/><br/>  
+
+<body>
+    <table border=1>
+        <thead>
+            <th>Booking ID</th>
+            <th>Rating</th>
+            <th>Review</th>
+        </thead>
+        {% for review in records %}
+        <tr>
+            <td> {{review.1}} </td>
+            <td> {{review.3}} </td>
+            <td> {{review.2}} </td>
+        {% endfor %}
+    </table>
+</body>
+</p>
+</html>
