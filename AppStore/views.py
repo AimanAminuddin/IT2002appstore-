@@ -538,4 +538,13 @@ def admin_place_index(request):
         result_dict = {'records':places}
             
     return render(request,'admin_place.html',result_dict)
+
+def admin_place_view(request,id): 
+    # find info for a specific place 
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM place WHERE address = %s",[id])
+        place = cursor.fetchone()
+    
+    result_dict = {'place':place}
+    return render(request,'admin_place_view.html',result_dict)
     
