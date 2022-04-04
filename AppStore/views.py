@@ -529,6 +529,7 @@ def admin_place_index(request):
         # admin can delete places from Airbnb App 
         if request.POST['action'] == 'delete':
             with connection.cursor() as cursor:
+                address = request.POST.get('address')
                 cursor.execute("DELETE FROM place WHERE address=%s",[request.POST['id']])
         
     with connection.cursor() as cursor:
