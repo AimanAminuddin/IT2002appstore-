@@ -509,10 +509,10 @@ def add_places(request):
     status = ''
     if request.POST:
         host = request.POST.get('host_id')
-        place = request.POST.get('place')
+        place = request.POST.get('address')
         city = request.POST.get('city')
         country = request.POST.get('country')
-        price_per_night = request.POST.get('price_per_night')
+        price_per_night = request.POST.get('price')
         
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM hosts WHERE host_id =%s",[host])
