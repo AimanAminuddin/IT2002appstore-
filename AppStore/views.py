@@ -436,33 +436,6 @@ def host_view(request,id):
     
     return render(request, 'host_view.html',result_dict) 
 
-'''
-def add(request):
-    """Shows the main page"""
-    context = {}
-    status = ''
-
-    if request.POST:
-        ## Check if customerid is already in the table
-        with connection.cursor() as cursor:
-
-            cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
-            customer = cursor.fetchone()
-            ## No customer with same id
-            if customer == None:
-                ##TODO: date validation
-                cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
-                        , [request.POST['user_id'], request.POST['email'], request.POST['password']
-                            ])
-                return redirect('login')    
-            else:
-                status = 'USER with ID %s already exists' % (request.POST['user_id'])
-
-
-    context['status'] = status
- 
-    return render(request, "add.html", context)
-'''
 
 def add_hosts(request):
     context = {}
@@ -549,3 +522,19 @@ def add_places(request):
     
     else:
         return render(request,'add_place.html',context)
+    
+
+def admin_place_index(request):
+    if request.POST:
+        # admin can delete places from Airbnb App 
+        if request.POST['action'] == 'delete':
+            with connection.cursor() as cursor:
+                cursor.execute("DELETE FROM place WHERE address=%s",[request.POST['id']])
+        
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM place ORDER BY address")
+        places = cursor.fetchall()
+        result_dict = {'records':places}
+            
+    return render(request,'admin_places.html',result_dict)
+    

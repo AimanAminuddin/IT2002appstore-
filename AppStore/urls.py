@@ -41,5 +41,6 @@ urlpatterns = [
     path('hosts',views.host_index,name = 'hosts'),
     path('host_view/<str:id>',views.host_view,name = 'host_view'),
     path('addhosts',views.add_hosts,name = 'addhosts'),
-    path('add_places',views.add_places,name = 'add_places')
+    path('add_places',views.add_places,name = 'add_places'),
+    path("admin_place",views.admin_place_index,name = 'admin_place')
 ]
