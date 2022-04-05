@@ -65,11 +65,38 @@ def add(request):
                 return render(request,"add.html",context)   
             else:
                 status = 'USER with ID %s already exists' % (request.POST['user_id'])
+                context['status'] = status
+                return render(request,"add.html",context)
+    else:
+        return render(request,"add.html",context)
+
+def admin_add(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if customerid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
+            customer = cursor.fetchone()
+            ## No customer with same id
+            if customer == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
+                        , [request.POST['user_id'], request.POST['email'], request.POST['password']
+                            ])
+                status = 'Successfully Create a New Account!'
+                context['status'] = status 
+                return render(request,"add.html",context)   
+            else:
+                status = 'USER with ID %s already exists' % (request.POST['user_id'])
 
 
     context['status'] = status
  
-    return render(request, "add.html", context)
+    return render(request, "admin_add.html", context)
 
 
 # Create your views here.
@@ -132,49 +159,7 @@ def login_request(request):
 
 
 
-def register_view(request):
-    context = {}
-    status = ''
-    if request.method == "POST":
-        username = request.POST.get('username')
-        email = request.POST.get("email")
-        password = request.POST.get('password')
-        password2 = request.POST.get('password2')
-        
-        if password != password2:
-            status = 'Password mismatch'
-            context['status'] = status
-            return render(request,"template.html",context)
-            
-        elif len(password) < 8:
-            status = "Password should be at least 8 characters"
-            context['status'] = status
-            return render(request,"template.html",context)
-        
-        else:
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT * FROM users WHERE user_id = %s",[username])
-                information1 = cursor.fetchone()
-                if information1 is not None: 
-                    # sombody has used up the username 
-                    status = "User already exists!"
-                    context['status'] = status
-                    return render(request,"template.html",context)
-                else:
-                    cursor.execute("SELECT * FROM users WHERE email = %s",[email])
-                    information2 = cursor.fetchone()
-                    
-                    if information2 is not None:
-                        # sombody has used this email 
-                        status = "Email has already been taken!"
-                        context['status'] = status
-                        return render(request,"template.html",context)
-                    else:
-                        # successfully create a new user 
-                        cursor.execute("INSERT INTO users VALUES(%s,%s,%s)",[username,email,password])
-                        return HttpResponseRedirect(reverse("login"))
-    else:
-        return render(request,"template.html",context)
+
     
 
 
