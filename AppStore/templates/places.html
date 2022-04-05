@@ -1,9 +1,55 @@
-
-{% load static %}
 <html>
-<h2>Places for Booking</h2>
-<body><p style = "background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTudtvktw7wotnyWQ5jGfwkHpyCEtOnhqauSQ&usqp=CAU;"
+    <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+.bg-img {
+  /* The image used */
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTudtvktw7wotnyWQ5jGfwkHpyCEtOnhqauSQ&usqp=CAU;");
+
+  min-height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+/* Add styles to the form container */
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 100%;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+
+
+
+
+/* Set a style for the submit button */
+
+
+.btn:hover {
+  opacity: 20;
+}
+</style>
+    </head>
+ <div class="bg-img">
+<h2>Places for Booking</h2>
+<body>
     <br/>
     <a href = "/bestplaces"><button>Recommended Places</button></a>|<a href="/booking"><button>Booking</button></a>|<a href="logout"><button>Logout</button></a>|<a href = "/review"><button>Leave a Review</button></a>
     <br/><br/>
@@ -28,6 +74,5 @@
         </tr>
         {% endfor %}
     </table>
-</p>
 </body>
 </html>
