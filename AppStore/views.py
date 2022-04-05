@@ -562,3 +562,17 @@ def admin_print_reviews(request,id):
         result_dict = {'records':review}
         return render(request,'admin_check_reviews.html',result_dict)
     
+def admin_place_schedule(request,id):
+    # find booking schedule for a specific place 
+    with connection.cursor() as cursor:
+        query = """SELECT u.email AS rentee_email,b.start_date,b.end_date
+        FROM place p,bookings b,users u
+        WHERE p.address = b.place_id AND b.user_id = u.user_id AND 
+        p.address = %s"""
+        cursor.execute(query, [id])
+        booking = cursor.fetchall()
+    
+    result_dict = {'records':booking}
+    
+    return render(request,'admin_schedule_view.html',result_dict)
+    
