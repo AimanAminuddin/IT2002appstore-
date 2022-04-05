@@ -45,5 +45,5 @@ urlpatterns = [
     path("admin_place",views.admin_place_index,name = 'admin_place'),
     path("admin_place_view/<str:id>",views.admin_place_view,name ="admin_place_view"),
     path("admin_check_reviews/<str:id>",views.admin_print_reviews,name ="admin_check_reviews"),
-    path("admin_schedule",views.admin_place_schedule,name ="admin_schedule")
+    path("admin_schedule<str:id>",views.admin_place_schedule,name ="admin_schedule")
 ]
