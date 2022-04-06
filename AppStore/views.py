@@ -54,7 +54,7 @@ def add(request):
 
             cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
             customer = cursor.fetchone()
-            cursor.execute("SELECT * FROM users WHERE user_id = %s",[request.POST['email']])
+            cursor.execute("SELECT * FROM users WHERE email = %s",[request.POST['email']])
             ## No customer with same id
             email = cursor.fetchone()
             if customer is not None:
@@ -87,7 +87,7 @@ def admin_add(request):
 
             cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
             customer = cursor.fetchone()
-            cursor.execute("SELECT * FROM users WHERE user_id = %s",[request.POST['email']])
+            cursor.execute("SELECT * FROM users WHERE email = %s",[request.POST['email']])
             ## No customer with same id
             email = cursor.fetchone()
             if customer is not None:
