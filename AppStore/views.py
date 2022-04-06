@@ -54,19 +54,25 @@ def add(request):
 
             cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
             customer = cursor.fetchone()
+            cursor.execute("SELECT * FROM users WHERE user_id = %s",[request.POST['email']])
             ## No customer with same id
-            if customer == None:
-                ##TODO: date validation
+            email = cursor.fetchone()
+            if customer is not None:
+                status = 'USER with ID %s already exists' % (request.POST['user_id'])
+                context['status'] = status
+                return render(request,"add.html",context)
+            
+            elif email is not None:
+                status = 'Email %s has already been taken' % (request.POST['email'])
+                context['status'] = status 
+                return render(request,"add.html",context)
+            else:
                 cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
                         , [request.POST['user_id'], request.POST['email'], request.POST['password']
                             ])
                 status = 'Successfully Create a New Account!'
                 context['status'] = status 
                 return render(request,"add.html",context)   
-            else:
-                status = 'USER with ID %s already exists' % (request.POST['user_id'])
-                context['status'] = status
-                return render(request,"add.html",context)
     else:
         return render(request,"add.html",context)
 
@@ -81,23 +87,27 @@ def admin_add(request):
 
             cursor.execute("SELECT * FROM users WHERE user_id = %s", [request.POST['user_id']])
             customer = cursor.fetchone()
+            cursor.execute("SELECT * FROM users WHERE user_id = %s",[request.POST['email']])
             ## No customer with same id
-            if customer == None:
-                ##TODO: date validation
+            email = cursor.fetchone()
+            if customer is not None:
+                status = 'USER with ID %s already exists' % (request.POST['user_id'])
+                context['status'] = status
+                return render(request,"add.html",context)
+            
+            elif email is not None:
+                status = 'Email %s has already been taken' % (request.POST['email'])
+                context['status'] = status 
+                return render(request,"add.html",context)
+            else:
                 cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
                         , [request.POST['user_id'], request.POST['email'], request.POST['password']
                             ])
                 status = 'Successfully Create a New Account!'
                 context['status'] = status 
                 return render(request,"add.html",context)   
-            else:
-                status = 'USER with ID %s already exists' % (request.POST['user_id'])
-
-
-    context['status'] = status
- 
-    return render(request, "admin_add.html", context)
-
+    else:
+        return render(request,"add.html",context)
 
 # Create your views here.
 def edit(request, id):
