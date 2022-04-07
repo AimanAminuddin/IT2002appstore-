@@ -105,9 +105,9 @@ def admin_add(request):
                             ])
                 status = 'Successfully Create a New Account!'
                 context['status'] = status 
-                return render(request,"add.html",context)   
+                return render(request,"admin_add.html",context)   
     else:
-        return render(request,"add.html",context)
+        return render(request,"admin_add.html",context)
 
 # Create your views here.
 def edit(request, id):
