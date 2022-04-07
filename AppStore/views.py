@@ -93,12 +93,12 @@ def admin_add(request):
             if customer is not None:
                 status = 'USER with ID %s already exists' % (request.POST['user_id'])
                 context['status'] = status
-                return render(request,"add.html",context)
+                return render(request,"admin_add.html",context)
             
             elif email is not None:
                 status = 'Email %s has already been taken' % (request.POST['email'])
                 context['status'] = status 
-                return render(request,"add.html",context)
+                return render(request,"admin_add.html",context)
             else:
                 cursor.execute("INSERT INTO users VALUES (%s, %s, %s)"
                         , [request.POST['user_id'], request.POST['email'], request.POST['password']
@@ -142,6 +142,8 @@ def edit(request, id):
     return render(request, "edit.html", context)
 
 def login_request(request):
+    status = ''
+    context = []
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -156,6 +158,7 @@ def login_request(request):
             
             if information is None:
                 messages.error(request,"Invalid username or password.")
+                status = 'Invalid username or password!'
             
             # user already signed up 
             else:
